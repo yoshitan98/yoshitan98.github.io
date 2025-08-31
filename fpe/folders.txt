@@ -1,0 +1,42 @@
+ fpexpress
+„ 
+„¥„Ÿbin
+„       fp20htp.dll
+„       fp20ime.dll
+„       fp20tl.dll
+„       fp20utl.dll
+„       fpedsat.dll
+„       fpxpress.chm
+„       fpxpress.exe
+„       lead52n.dll
+„       msencode.dll
+„       vtforsat.dll
+„       vthomsat.dll
+„       vtimesat.dll
+„ 
+„¥„Ÿpages
+„   „¥„Ÿconfirm.tem
+„   „       confirm.htm
+„   „       confirm.inf
+„   „ 
+„   „¥„Ÿfolder.tem
+„   „       folder.inf
+„   „ 
+„   „¥„Ÿnormal.tem
+„   „       normal.htm
+„   „       normal.inf
+„   „ 
+„   „¥„Ÿsurvey.tem
+„   „       survey.htm
+„   „       survey.inf
+„   „ 
+„   „¥„Ÿvtiform.wiz
+„   „       vtiform.exe
+„   „       vtiform.inf
+„   „ 
+„   „¤„Ÿvtihome.wiz
+„           vtihome.exe
+„           vtihome.inf
+„ 
+„¤„Ÿtemp
+        empty.tmp

@@ -1,0 +1,57 @@
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>FrontPage Express 2.0</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<p><font size="5"><strong>FrontPage Express 2.0</strong></font>　　2025/8/29更新</p>
+
+<p>　</p>
+
+<p>私のサイトのような外見にこだわらない単純なページを書くのに今のhtmlエディターは面倒過ぎる。HTML
+3.2までしかサポートしていない FrontPage Express 2.0
+で充分なので、今でもそれ使っている。<br>
+<br>
+サポート切れのソフトを使うと脆弱性がなんたらかんたらと言い出す方がいるが、そんな古いソフトを狙う人はおらず、世間で対策が普及している中でセキュリティー問題が起こるとは思えず、気にしてしない。<br>
+<br>
+文字コードはutf-8が使えないのでjisを使っているが、文字列の漢字INコードと漢字OUTコードがモダンブラウザーで文字化けすることがある。ヘッダー中の
+&quot;Content-Type&quot; を &quot;content-type&quot; と手で書き換えるとなぜか直ったりする。<br>
+<br>
+<a href="https://www.eonet.ne.jp/~ninufuabushi/pc/urawaza.htm" target="_blank">Windows 2000 にFrontPage Express
+をインストールする</a><br>
+<br>
+というページがあるが、同じ方法でWindows 11にもインストールできる。ただしアンインストーラーは作成されないから必要になった時には
+&quot;fpxsetup.vbs&quot; や &quot;fpxpress.inf&quot; を読み解いて手動でアンインストールを行う必要がある。<br>
+<br>
+その方法でインストールした後のフォルダー構成は<a href="folders.txt" target="_blank">この通り</a>。&quot;msencode.dll&quot;
+だけはWindows 7よりも前のPCの C:\WINDOWS\SYSTEM32
+からコピーをして来て bin フォルダに入れる必要がある。私は古いWindows
+XP機から持って来たが、ネット検索するとダウンロードできるサイトもあった（使用は自己責任で）。<br>
+<br>
+私はインストールはせず この上記フォルダ構造のままポータブルプログラムとして使っている。インストールしないと、<br>
+・起動時にレジストリーに書き込めないというエラーが出る（書き込みしないで欲しいからそれでよし）。<br>
+・メニューからヘルプファイルを選んでも開かない（ファイル自体は存在しているので参照可）。<br>
+・いくつかテンプレートが開かない（普通は使わないでしょう）。<br>
+といった不都合はあったが。<br>
+<br>
+今 &quot;FPESETUP.CAB&quot; の入ったCD-ROMを入手するのはもう難しいと思うが、ネット上を探すとあるものですね。インターネットアーカイブでも公式ファイルはもう入手できないが
+たとえば<br>
+<a href="https://web.archive.org/web/20040610031539/http://muryohp.s18.xrea.com/fpe_dl.shtm"
+target="_blank">https://web.archive.org/web/20040610031539/http://muryohp.s18.xrea.com/fpe_dl.shtm</a><br>
+とか。これを使用するのは違法には違いないけれど今更違法性は低いだろう。ちなみにそのファイルは私が持っているファイルと完全に一致した。<br>
+<br>
+あるいは、古いPCに FrontPage Express 2.0
+がインストールされていれば、そのインストールフォルダをコピーして来てポータブルプログラムとして使えるのではないかな。<br>
+<br>
+githubのようにutf-8しか受け付けないサーバーの場合はhtmlをnkfコマンド等でutf-8に変換してヘッダー内のcharsetを
+charset=utf-8 と書き換えればよろし。</p>
+
+<p>　</p>
+
+<p><a href="../">＜戻る＞</a></p>
+</body>
+</html>

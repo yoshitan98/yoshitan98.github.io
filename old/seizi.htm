@@ -1,0 +1,66 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Seizi</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<p><font size="4"><strong>&lt; Seizi.exe &gt;<br>
+テキストファイル中の漢字（新字）を正字（旧字）に変換します（MS-DOSプロンプト用フィルタ）<br>
+</strong></font><br>
+<br>
+作成日: 1999年9月19日<br>
+<br>
+作成者: Yoshitan (<a href="mailto:yoshitan@imasy.or.jp">mailto:yoshitan@imasy.or.jp</a>)<br>
+<br>
+動作環境: Windows 95/98 日本語版<br>
+<br>
+MS-DOSプロンプトで動作するフィルタプログラムです。Seizi.exe
+と同じディレクトリに 変換表ファイル Seizi.dat
+を置いて実行します。<br>
+<br>
+新字と正字の変換表をネットワーク上で少し探しましたが見当たりませんでした。そこで自作をしてしまいました。そのため抜けがあるかもしれません。けしからん話で、JIS中に対応する正字のないものが結構ありました。一例：&quot;暦&quot;&quot;歴&quot;は&quot;木&quot;が&quot;禾&quot;となっているのが正字。またJISは歴史的に存在しない勝手な自体を採用しているものがあります。森鴎外の&quot;鴎&quot;の偏はシステムフォントでは&quot;区&quot;になっていますが&quot;區&quot;とすべき。これについてはフォントを変えれば解決する問題ではあります（たとえば新潮文庫のCD-ROMに付属の大日本印刷製・秀英太明朝では正しく表示される）。<br>
+<br>
+保守主義者が使う（といっても正（旧）かなづかいへの変換ができないのであまり意味がない）ほかに、次のようなごく限定的な実用目的があります（実はこのためにつくった）。<br>
+<br>
+<br>
+--- 日本語が読める韓国人にOutlook Expressで日本語のEメールを送る
+---<br>
+<br>
+韓国語コードにはありがたいことにひらがな・かたかなが入っています。漢字も入っていますが正字体です。そこで日本語で普通に入力をした後にこのフィルタを使います。<br>
+<br>
+1. Outlook Express
+用に韓国語フォントをインストールする（韓国語用グローバルIMEは不要）。<br>
+2. 韓国語コードは8ビット使うので本文をエンコードして送信する必要があります。Outlook
+Express 5 の場合 ツール-&gt;オプション-&gt;送信-&gt;メール送信の形式
+の所で設定します。設定はメッセージの新規作成の前に行わないと新規メッセージには反映されないので注意。<br>
+3.
+メッセージの新規作成をし文字コードを韓国語にする。<br>
+3. Seizi.exe
+を使って別途用意した日本語テキストをクリップボード経由でメッセージに貼り付ける（題名には日本語不可）。<br>
+4.
+うまくいかない文字は四角になるので別の文字・ことばに手で修正する。たとえば
+&quot;内&quot;が駄目。きっと韓国語コードでは&quot;人&quot;ではなくて&quot;入&quot;なのでしょう（JISにはないがこれが正字）。<br>
+<br>
+<br>
+変換表 &quot;Seiji.dat&quot;
+はテキストファイルで、各行はUnicode、漢字、正字がスペース区切りで入っています。<br>
+<br>
+参照辞典： 「 新字源」（角川書店）<br>
+<br>
+Delphi 4 ソースを添付。<br>
+<br>
+</p>
+
+<p><a href="bin/Seizi.lzh">ダウンロード (55KB)</a><br>
+</p>
+
+<hr>
+
+<p><a href="index.htm">ホーム</a></p>
+</body>
+</html>
