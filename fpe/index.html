@@ -8,7 +8,7 @@
 
 <body bgcolor="#FFFFFF">
 
-<p><font size="5"><strong>FrontPage Express 2.0</strong></font>　　2025/8/29更新</p>
+<p><font size="5"><strong>FrontPage Express 2.0</strong></font>　　2025/9/1更新</p>
 
 <p>　</p>
 
@@ -19,7 +19,10 @@
 サポート切れのソフトを使うと脆弱性がなんたらかんたらと言い出す方がいるが、そんな古いソフトを狙う人はおらず、世間で対策が普及している中でセキュリティー問題が起こるとは思えず、気にしてしない。<br>
 <br>
 文字コードはutf-8が使えないのでjisを使っているが、文字列の漢字INコードと漢字OUTコードがモダンブラウザーで文字化けすることがある。ヘッダー中の
-&quot;Content-Type&quot; を &quot;content-type&quot; と手で書き換えるとなぜか直ったりする。<br>
+&quot;Content-Type&quot; を &quot;content-type&quot; と後でテキストエディターで書き換えるとなぜか直ったりする。<br>
+<br>
+また、pngには対応しておらずhtmlを保存しようとすると「この画像をファイルに保存しますか」と出てgifへの保存を誘導される。「いいえ」にして、後でテキストエディターで
+*.gif を *.png に書き換えればよい。<br>
 <br>
 <a href="https://www.eonet.ne.jp/~ninufuabushi/pc/urawaza.htm" target="_blank">Windows 2000 にFrontPage Express
 をインストールする</a><br>
@@ -32,16 +35,19 @@
 からコピーをして来て bin フォルダに入れる必要がある。私は古いWindows
 XP機から持って来たが、ネット検索するとダウンロードできるサイトもあった（使用は自己責任で）。<br>
 <br>
-私はインストールはせず この上記フォルダ構造のままポータブルプログラムとして使っている。インストールしないと、<br>
-・起動時にレジストリーに書き込めないというエラーが出る（書き込みしないで欲しいからそれでよし）。<br>
-・メニューからヘルプファイルを選んでも開かない（ファイル自体は存在しているので参照可）。<br>
-・いくつかテンプレートが開かない（普通は使わないでしょう）。<br>
-といった不都合はあったが。<br>
+私はインストールはせず この上記フォルダ構造のままポータブルプログラムとして使っている。インストールしないと、</p>
+
+<ul>
+    <li>起動時にレジストリーに書き込めないというエラーが出る（書き込みしないで欲しいからそれでよし）。</li>
+    <li>メニューからヘルプファイルを選んでも開かない（ファイル自体は存在しているので参照可）。</li>
+    <li>いくつかテンプレートが開かない（普通は使わないでしょう）。</li>
+</ul>
+
+<p>といった不都合はあったが。<br>
 <br>
 今 &quot;FPESETUP.CAB&quot; の入ったCD-ROMを入手するのはもう難しいと思うが、ネット上を探すとあるものですね。インターネットアーカイブでも公式ファイルはもう入手できないが
 たとえば<br>
-<a href="https://web.archive.org/web/20040610031539/http://muryohp.s18.xrea.com/fpe_dl.shtm"
-target="_blank">https://web.archive.org/web/20040610031539/http://muryohp.s18.xrea.com/fpe_dl.shtm</a><br>
+<a href="https://web.archive.org/web/20040610031539/http://muryohp.s18.xrea.com/fpe_dl.shtm" target="_blank">https://web.archive.org/web/20040610031539/http://muryohp.s18.xrea.com/fpe_dl.shtm</a><br>
 とか。これを使用するのは違法には違いないけれど今更違法性は低いだろう。ちなみにそのファイルは私が持っているファイルと完全に一致した。<br>
 <br>
 あるいは、古いPCに FrontPage Express 2.0
@@ -52,6 +58,6 @@ charset=utf-8 と書き換えればよろし。</p>
 
 <p>　</p>
 
-<p><a href="../">＜戻る＞</a></p>
+<p><a href="../">＜ホームへ＞</a></p>
 </body>
 </html>
