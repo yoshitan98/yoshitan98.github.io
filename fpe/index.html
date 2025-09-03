@@ -1,14 +1,14 @@
 <html>
 
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
 <title>FrontPage Express 2.0</title>
 </head>
 
 <body bgcolor="#FFFFFF">
 
-<p><font size="5"><strong>FrontPage Express 2.0</strong></font>　　2025/9/1更新</p>
+<p><font size="5"><strong>FrontPage Express 2.0</strong></font>　　2025/9/3更新</p>
 
 <p>　</p>
 
@@ -18,8 +18,9 @@
 <br>
 サポート切れのソフトを使うと脆弱性がなんたらかんたらと言い出す方がいるが、そんな古いソフトを狙う人はおらず、世間で対策が普及している中でセキュリティー問題が起こるとは思えず、気にしてしない。<br>
 <br>
-文字コードはutf-8が使えないのでjisを使っているが、文字列の漢字INコードと漢字OUTコードがモダンブラウザーで文字化けすることがある。ヘッダー中の
-&quot;Content-Type&quot; を &quot;content-type&quot; と後でテキストエディターで書き換えるとなぜか直ったりする。<br>
+文字コードはutf-8が使えないのでshift-isを使えばよい。jisを使うと文字列の漢字INエスケープシーケンスと漢字OUTエスケープシーケンスがモダンブラウザーで文字化けすることがある。FrontPage
+Expressが書き込む特定のエスケープシーケンスが存在すると文字化けするようだ。ちなみにjisをサポートしているテキストエディターやhtmlエディターのある種のもので読み込んで上書きすると
+そのエスケープシーケンスが書き換わって文字化けしなくなるようだ。<br>
 <br>
 また、pngには対応しておらずhtmlを保存しようとすると「この画像をファイルに保存しますか」と出てgifへの保存を誘導される。「いいえ」にして、後でテキストエディターで
 *.gif を *.png に書き換えればよい。<br>
@@ -47,7 +48,8 @@ XP機から持って来たが、ネット検索するとダウンロードでき
 <br>
 今 &quot;FPESETUP.CAB&quot; の入ったCD-ROMを入手するのはもう難しいと思うが、ネット上を探すとあるものですね。インターネットアーカイブでも公式ファイルはもう入手できないが
 たとえば<br>
-<a href="https://web.archive.org/web/20040610031539/http://muryohp.s18.xrea.com/fpe_dl.shtm" target="_blank">https://web.archive.org/web/20040610031539/http://muryohp.s18.xrea.com/fpe_dl.shtm</a><br>
+<a href="https://web.archive.org/web/20040610031539/http://muryohp.s18.xrea.com/fpe_dl.shtm"
+target="_blank">https://web.archive.org/web/20040610031539/http://muryohp.s18.xrea.com/fpe_dl.shtm</a><br>
 とか。これを使用するのは違法には違いないけれど今更違法性は低いだろう。ちなみにそのファイルは私が持っているファイルと完全に一致した。<br>
 <br>
 あるいは、古いPCに FrontPage Express 2.0
