@@ -1,0 +1,43 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>「TiMidity++」関連（付・SC-88Pro音色リスト）</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<p><font size="4"><strong>「TiMidity++」関連（付・SC-88Pro音色リスト）</strong></font>　<font size="2">2025年9月20日更新</font></p>
+
+<p>　</p>
+
+<p>今更GM/GS規格のmidiを話題にします。</p>
+
+<p>サウンドフォント（*.sf2ファイル）という音色データファイルがあってGM/GS等の規格を考慮したサウンドフォントを
+TiMidity++ というソフトで使用するとGM/GS規格等のmidiファイルを再生することができる。使用方法の説明はしません。</p>
+
+<p>Googleで検索すると色々古いバージョンの情報が出て来くるが、今でも更新されていてWindows
+11でも正常動作するプログラムは <a href="https://github.com/starg2/timidity41" target="_blank">TiMidity++
+41</a> というフォークだけかもしれない。</p>
+
+<p>TiMidity++ を使用するためにはサウンドフォントをどのように使用するかという設定を書いたconfigファイル（*.cfg）というものを作成する必要があるが、プログラム同梱の
+sfviewer.exe や cfgforsf で基本的な configファイルは作成することができる。また、サウンドフォントの音色名をconfigファイルにコメントとして付記することもできる。</p>
+
+<p>GM/GS等の規格を考慮したサウンドフォントは今でも色々無償公開されているが使用音素材が著作権的に怪しいものが大部分のようだ。クリーンに製作されたものは
+<a href="https://github.com/pianobooster/fluid-soundfont" target="_blank">Fluid R3</a> と <a href="https://schristiancollins.com/generaluser.php" target="_blank">GeneralUser GS</a> だけかもしれない。</p>
+
+<p>かつてGM/GS規格のmidiファイルが盛んに製作されていた頃一世を風靡したmidi音源にSC-88Proというものがあった。その機能を使いこなしたSC-88Pro専用midiファイルというものもよく製作されていた。SC-88Pro用ファイルを再生するための機能はTiMidity++にも備わっているが、その音量や発声位置に合わせたconfigファイルを作成するという createcfg というソフトも存在した（<a href="https://w.atwiki.jp/timidity/pages/15.html" target="_blank">ここ</a>にある）。リンク切れしているファイルや情報はGoogleやインターネットアーカイブで探す必要がある。</p>
+
+<p>先程書いたようにサウンドフォントの音色名はconfigファイルに付記できるがdrumset行にドラムセット名を付記することはできない。プログラムを作成するのはちょっと面倒そうだったのでCopilotに<a href="add_comment_to_drumset.zip" target="_blank">Pythonスクリプト</a>を書いてもらった。</p>
+
+<p>GM/GS等の規格を考慮したサウンドフォントにどの程度規格との互換性があるかを見るためにconfigファイルに代表的音源SC-88Proの音色名を比較用に付記するプログラムを作成しようと考えた（音色名だけを見てもそれほど意味がないことは承知しているが）。ところが必要となるSC-88Proの音色リストデータがネット上にありそうでない。見つからないのはドラムの音色リスト。<a href="https://www.ssw.co.jp/dtm/invsc/" target="_blank">INVSC</a>
+という互換VSTi用の日本語音色名のリストはあったが使えるかどうかわからない。そこでローランドが公開しているマニュアルPDFをテキストファイルに変換してエディターとエクセルとで加工して自作するしかなかなかった。<a href="SC-88ProToneList.zip" target="_blank">これ</a>が作成したリスト。INVSCとは違いがあるようだった。作成したプログラムは<a href="Add88ProToneToCfg.zip" target="_blank">これ</a>。</p>
+
+<p>　</p>
+
+<p><a href="../">＜戻る＞</a></p>
+
+<p>　</p>
+</body>
+</html>
