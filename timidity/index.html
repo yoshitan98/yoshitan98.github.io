@@ -8,7 +8,7 @@
 
 <body bgcolor="#FFFFFF">
 
-<p><font size="4"><strong>「TiMidity++」関連（付・SC-88Pro音色リスト）</strong></font>　<font size="2">2025年9月24日更新</font></p>
+<p><font size="4"><strong>「TiMidity++」関連（付・SC-88Pro音色リスト）</strong></font>　<font size="2">2025年10月5日更新</font></p>
 
 <p>　</p>
 
@@ -21,11 +21,12 @@ TiMidity++ というソフトで使用するとGM/GS規格等のmidiファイル
 11でも正常動作するプログラムは <a href="https://github.com/starg2/timidity41" target="_blank">TiMidity++
 41</a> というフォークだけかもしれない。</p>
 
-<p>TiMidity++ を使用するためにはサウンドフォントをどのように使用するかという設定を書いたconfigファイル（*.cfg）というものを作成する必要があるが、プログラム同梱の
+<p>TiMidity++ を使用するためにはサウンドフォントをどのように使用するかという設定を書いたconfigファイル（*.cfg）というものを作成する<strike>必要がある</strike>が、プログラム同梱の
 sfviewer.exe や cfgforsf で基本的な configファイルは作成することができる。また、オプションでサウンドフォントの音色名をconfigファイルにコメントとして付記することもできる。</p>
 
 <p>GM/GS等の規格を考慮したサウンドフォントは今でも色々無償公開されているが使用音素材が著作権的に怪しいものが大部分のようだ。クリーンに製作されたものは
-<a href="https://github.com/pianobooster/fluid-soundfont" target="_blank">Fluid R3</a> と <a href="https://schristiancollins.com/generaluser.php" target="_blank">GeneralUser GS</a> だけかもしれない。</p>
+<a href="https://github.com/pianobooster/fluid-soundfont" target="_blank">Fluid R3</a> と <a href="https://schristiancollins.com/generaluser.php"
+target="_blank">GeneralUser GS</a> だけかもしれない。</p>
 
 <p>かつてGM/GS規格のmidiファイルが盛んに製作されていた頃一世を風靡したmidi音源にSC-88Proというものがあった。その機能を使いこなしたSC-88Pro専用midiファイルも多く製作されていた。SC-88Pro用ファイルを再生するための機能はTiMidity++にも備わっているが、その音量や発声位置に合わせたconfigファイルを作成するという
 createcfg というソフトまで存在した（<a href="https://w.atwiki.jp/timidity/pages/15.html" target="_blank">ここ</a>にある）。それを動作させるために必要なファイルの一部はGoogleやインターネットアーカイブで探す必要がある。</p>
@@ -36,6 +37,9 @@ createcfg というソフトまで存在した（<a href="https://w.atwiki.jp/ti
 という互換VSTi用の日本語音色名のリストはあったが使えるかどうかわからない。そこでローランドが公開している取説PDFをテキストファイルに変換してエディターとエクセルとで加工して自作するした。その後
 Sound Canvas VA のインストールフォルダ中に音色リストのTSVファイルが入っていることに気付いた。確認の上それを利用することにしたが、一部取説と相違していることがわかった。
 <a href="SC-88ProToneList.zip" target="_blank">これ</a>が最終的に作成したリスト<font size="2"> （2025/9/23更新)</font>。作成したプログラムは<a href="Add88ProToneToCfg.zip" target="_blank">これ</a><font size="2"> （2025/9/24訂正)</font>。</p>
+
+<p>※訂正： 使用するにはconfigファイルを作成する必要があると最初書いていたが、TiMidity++41
+を始めとする新しいフォークではconfigファイルのかわりにサウンドフォントファイルを直接読み込めるようになっていることに気付いていなかった。サウンドフォントをデフォルト設定のままで使うのであればTiMidity++は簡単に使用を始めることができる。</p>
 
 <p>　</p>
 
