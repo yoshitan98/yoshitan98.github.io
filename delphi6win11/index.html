@@ -1,0 +1,65 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Delphi 6のコマンドラインコンパイラーをWindows 11で使ってみる</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<p><font size="4"><strong>Delphi 6のコマンドラインコンパイラーをWindows
+11で使う</strong></font>　<font size="2">2025年10月24日更新</font></p>
+
+<p>　</p>
+
+<p>私はPascalを Turbo Pascal 3 以来色々購入して使用して来たが.Netを使わないWindowsデスクトップアプリを作成するには
+Delphi 6 で十分だと思う。Windows XP の仮想環境に
+Delphi 6 Professional をインストールしてあるが、ネットに書かれているのを見ると一応Windows
+11にもインストールできるらしい.。しかし古いいソフトをインストールして環境を汚したくない。私はコンソールアプリを作ることが多いのでとりあえずコマンドラインコンパイラー
+dcc32.exe をWindows 11上でポータブルアプリとして使えるかどうか試してみた。</p>
+
+<p>まずはWindows XPの Delphi 6 のインストール先から
+Bin フォルダーと Lib フォルダーとをコピーして来てWindows
+11上に作成したフォルダーにコピーをした。BinフォルダーにはDelphi
+6 IDEを含め色々ファイルが入っているが、最低限必要なファイルは<br>
+dcc32.exe の他には<br>
+rlink32.dll<br>
+lnkdfm60.dll<br>
+borlndmm.dll<br>
+delphimm.dll<br>
+dcc60.dl<br>
+のみだと思う。足りなかったらエラーが出るだろうからその時追加すればいいだろう。<br>
+それと dcc32.exe のコマンドラインオプションを記述しておくための
+dcc32.cfg があってもよい。</p>
+
+<p>コンソールアプリだけでなくてGUIアプリもコンパイルできる。IDEでＧＵＩアプリのフォームファイル*.dfmをバイナリー形式で保存する設定にしてあったとしても
+convert.exe でテキスト形式に変換できてエディターで編集できる。</p>
+
+<p>今は Free Pascal/Lazurus をメインに使っているので不要ではあるのだが既存ソースを修正してもそのままコンパイルできる。</p>
+
+<p>　</p>
+
+<p>ところで、かつて商用利用不可という条件で
+Delphi 6 Personal というソフトが<a href="https://web.archive.org/web/20011211224056/http://www.borland.co.jp/delphi/personal/"
+target="_blank">公式ページ</a>（インターネットアーカイブ）や雑誌付録でフリー配布されていた。インストールするには使用者登録が必要だが今では登録できないのでインストーラーを持っていてもインストールはできない。しかし今でもインストール無しでコマンドラインコンパイラーが使用できてしまうことがわかった。インストーラーはインターネットアーカイブにも残っていないので私が持っているものを勝手に<a href="https://yoshitan.stars.ne.jp/delphi6win11/BorlandDelphiPersonalEditionJP.exe"
+target="_blank">転載</a>した。ファイルサイズは公式ページ記載と一致しているがMD5等は書かれていないので怪しいと思う方は仮想環境やサンドボックス上でテストして下さい。</p>
+
+<ol type="1" start="1">
+    <li>Windows 11上でインストーラーを実行する。インストール先指定は
+        &quot;C:\Program Files (x86)&quot; ではなくて普通のフォルダーでよい。</li>
+    <li>下のダイアログボックスが出るまで進める。これ以上は使用者登録がないと進められない。<br>
+        <br>
+        <img src="dialogbox.jpg" width="671" height="373"><br>
+        </li>
+    <li>ここで右上の X をクリックして終了してしまう。まだインストールは終わっていないがインストール先に
+        dcc32.exe とそれを利用するために必要なファイルが揃っている。</li>
+</ol>
+
+<p>　</p>
+
+<p><a href="../">＜戻る＞</a></p>
+
+<p>　</p>
+</body>
+</html>
