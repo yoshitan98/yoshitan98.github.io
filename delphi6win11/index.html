@@ -3,24 +3,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
-<title>Delphi 6のコマンドラインコンパイラーをWindows 11で使ってみる</title>
+<title>Delphi 6をWindows 11で使う</title>
 </head>
 
 <body bgcolor="#FFFFFF">
 
-<p><font size="4"><strong>Delphi 6のコマンドラインコンパイラーをWindows
-11で使う</strong></font>　<font size="2">2025年10月24日更新</font></p>
+<p><font size="4"><strong>Delphi 6をWindows 11で使う</strong></font>　<font size="2">2025年10月29日更新</font></p>
 
 <p>　</p>
 
-<p>私はPascalを Turbo Pascal 3 以来色々購入して使用して来たが.Netを使わないWindowsデスクトップアプリを作成するには
-Delphi 6 で十分だと思う。Windows XP の仮想環境に
-Delphi 6 Professional をインストールしてあるが、ネットに書かれているのを見ると一応Windows
-11にもインストールできるらしい.。しかし古いいソフトをインストールして環境を汚したくない。私はコンソールアプリを作ることが多いのでとりあえずコマンドラインコンパイラー
-dcc32.exe をWindows 11上でポータブルアプリとして使えるかどうか試してみた。</p>
+<p>私はPascalを Turbo Pascal 3 以来色々Borland製品を購入して使用して来たが.Netを使わないWindowsデスクトップアプリを作成するには
+Delphi 6 で十分だと思う。ネットに書かれているのを見ると一応Windows
+11にもインストールできるらしい.。しかし古いいソフトをCD-ROMからインストールして環境を汚したくない。かつて使用していたWindows
+XPを仮想環境にした中に Delphi 6 Professional
+がインストールしてあるのだが、そのファイルとレジストリーとをコピーして使えるかどうか試してみた。今は
+Free Pascal/Lazurus をメインに使っているのでDelphi 6が必要ということでもないのだが。</p>
 
-<p>まずはWindows XPの Delphi 6 のインストール先から
-Bin フォルダーと Lib フォルダーとをコピーして来てWindows
+<p>　</p>
+
+<p>【I】 コマンドラインコンパイラ dcc32.exe を使えるようにしてみる</p>
+
+<p>私はコンソールアプリを作ることが多いのでまずはコマンドラインコンパイラー
+dcc32.exe だけでも使えるかどうか試してみた。簡単にできた。</p>
+
+<p>Windows XPの Delphi 6 のインストール先から Bin
+フォルダーと Lib フォルダーとをコピーして来てWindows
 11上に作成したフォルダーにコピーをした。BinフォルダーにはDelphi
 6 IDEを含め色々ファイルが入っているが、最低限必要なファイルは<br>
 dcc32.exe の他には<br>
@@ -29,25 +36,86 @@ lnkdfm60.dll<br>
 borlndmm.dll<br>
 delphimm.dll<br>
 dcc60.dl<br>
-のみだと思う。足りなかったらエラーが出るだろうからその時追加すればいいだろう。<br>
-それと dcc32.exe のコマンドラインオプションを記述しておくための
-dcc32.cfg があってもよい。</p>
+のみだと思う。足りなかったらエラーが出るだろうからその時追加すればいいだろう。</p>
+
+<p>それと dcc32.exe のコマンドラインオプションを記述しておくための
+dcc32.cfg があってもよい。その中にたとえば<br>
+-U&quot;Libフォルダーの絶対パス;他の自作unitの保存フォルダーの絶対パス&quot;<br>
+のように書いて置けば一々コマンドラインで指定せずに済む。<br>
+Binフォルダーにはパスを通しておく。</p>
 
 <p>コンソールアプリだけでなくてGUIアプリもコンパイルできる。IDEでＧＵＩアプリのフォームファイル*.dfmをバイナリー形式で保存する設定にしてあったとしても
-convert.exe でテキスト形式に変換できてエディターで編集できる。</p>
+convert.exe でテキスト形式に変換できてエディターで編集できるので既存ソースを修正してコンパイルすることもできる。</p>
 
-<p>今は Free Pascal/Lazurus をメインに使っているので不要ではあるのだが既存ソースを修正してもそのままコンパイルできる。</p>
+<p>Delphi 6のインストールCD-ROMにはフォルダー／ファイルが展開された状態で入っているのでそれを使うこともできるがアップデートがされていないことに注意。</p>
 
 <p>　</p>
 
-<p>ところで、かつて商用利用不可という条件で
-Delphi 6 Personal というソフトが<a href="https://web.archive.org/web/20011211224056/http://www.borland.co.jp/delphi/personal/"
-target="_blank">公式ページ</a>（インターネットアーカイブ）や雑誌付録でフリー配布されていた。インストールするには使用者登録が必要だが今では登録できないのでインストーラーを持っていてもインストールはできない。しかし今でもインストール無しでコマンドラインコンパイラーが使用できてしまうことがわかった。インストーラーはインターネットアーカイブにも残っていないので私が持っているものを勝手に<a href="https://yoshitan.stars.ne.jp/delphi6win11/BorlandDelphiPersonalEditionJP.exe"
+<p>【II】 IDEを含め Delphi 6 全体を使えるようにしてみる</p>
+
+<p>以下、インストール先を Windows 11 の &quot;C:\Program
+Files (x86)\Borland&quot; ということにして書く。</p>
+
+<ol>
+    <li>Windows XP の &quot;C:\Program Files\Borland&quot;
+        フォルダーを Windows 11 の &quot;C:\Program Files
+        (x86)\Borland&quot; にコピーし、&quot;C:\Program
+        Files\Common Files\Borland Shared&quot; を &quot;C:\Program
+        Files (x86)\Common Files\Borland Shared&quot;
+        にコピーする。</li>
+    <li>Windows XP の &quot;C:\WINDOWS\system32&quot;
+        フォルダの中から Delphi 6
+        がコピーしたファイルを分離して Windows 11
+        を汚さないようにする。Windows 11 の &quot;C:\Program
+        Files (x86)\Borland&quot; の中に &quot;System32&quot;
+        フォルダーを作成してそこに入れることにした（Windows
+        11ではSysWOW64になるのだが）。CD-ROMの \install\system32
+        のファイルリストは<a href="system32.txt" target="_blank">これ</a>。それを参照すればよい。ただしアップデートで追加された
+        soaprtl60.bpl と soaprtl60.map はリストに入っていない。</li>
+    <li>Windows XP でレジストリー HKEY_LOCAL_MACHINE\SOFTWARE\Borland
+        と HKEY_CURRENT_USER\Software\Borland とをregファイルにエクスポートする。</li>
+    <li>regファイルをテキストエディターで編集する。HKEY_LOCAL_MACHINE\SOFTWARE\Borland
+        のregファイルでは &quot;HKEY_LOCAL_MACHINE\SOFTWARE&quot;
+        を &quot;HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node&quot;
+        に全部置換する必要がある。また、インストール先のフォルダー名等も全部書き換える。さらに
+        HKEY_CURRENT_USER\Software\Borland\Delphi\6.0 の LM は削除しておく。その後regファイルを開いてレジストリーに追加をする。</li>
+    <li>環境変数 Path に<br>
+        C:\Program Files (x86)\Borland\System32<br>
+        C:\Program Files (x86)\Borland\Delphi6\Bin<br>
+        C:\Program Files (x86)\Borland\Delphi6\Projects\Bpl<br>
+        を追加する。</li>
+    <li>&quot;C:\Program Files (x86)\Borland\Delphi6\Bin\delphi32.exe&quot;
+        を起動してみる。もしインストール番号とインストールキーの入力を求められてらCD-ROMが手元になくても
+        HKEY_CURRENT_USER\Software\Borland\Delphi\6.0 に LMLIC
+        と LMKEY として記録されている。使用許諾コードはもはやネットで取得できないので「後で取得する」でよい。</li>
+    <li>設定やレジストリ書き換えを行って動作するように調整する。環境を汚したくないという方針なのでActiveXのインストールはしておらずそれを利用したコンポーネントは動作しない。</li>
+</ol>
+
+<p>　</p>
+
+<p>【III】 使用許諾コードについて</p>
+
+<p>上記のようにインストールした方でもCD-ROMから普通にインストールしても構わないという方でも使用許諾コードについては知っておく方がよいことがある。</p>
+
+<p>公式の<a href="https://docwiki.embarcadero.com/Support/ja/Delphi_6の使用許諾FAQ"
+target="_blank">「使用許諾FAQ」</a>というページを見ると現在ネットで使用者許諾コードは取得できないが「使用許諾コード取得代行を依頼」という方法は用意しているとのこと。しかし動作保証対象外のWindows
+10/11では<a href="https://docwiki.embarcadero.com/Support/ja/Delphi_6で使用許諾が完了したのに、製品を起動すると使用許諾ウィザードが表示されます"
+target="_blank">「使用許諾が完了したのに、製品を起動すると使用許諾ウィザードが表示されます」</a>という問題が発生する。しかも「登録回数の上限」というものもあるので「使用許諾コード取得代行を依頼」も回数が制限されてしまうだろう。そのため使用許諾コードは「後で取得する」で使用を続ける。</p>
+
+<p>ネット上に「後で取得する」にしても効かなくなることがあるように書かれていたが、その時にはレジストリー
+HKEY_CURRENT_USER\Software\Borland\Delphi\6.0 の LM を削除すればよいようだ。</p>
+
+<p>　</p>
+
+<p>【IV】 おまけ</p>
+
+<p>かつて商用利用不可という条件で Delphi 6
+Personal というソフトが<a href="https://web.archive.org/web/20011211224056/http://www.borland.co.jp/delphi/personal/"
+target="_blank">公式ページ</a>（インターネットアーカイブ）や雑誌付録でフリー配布されていた。インストールするには使用者登録が必要だが今では登録できないのでインストーラーを持っていてもインストールはできない。しかし今でもインストール無しでコマンドラインコンパイラーだけは使用できてしまうことがわかった。インストーラーはインターネットアーカイブにも残っていないので私が持っているものを勝手に<a href="https://yoshitan.stars.ne.jp/delphi6win11/BorlandDelphiPersonalEditionJP.exe"
 target="_blank">転載</a>した。ファイルサイズは公式ページ記載と一致しているがMD5等は書かれていないので怪しいと思う方は仮想環境やサンドボックス上でテストして下さい。</p>
 
 <ol type="1" start="1">
-    <li>Windows 11上でインストーラーを実行する。インストール先指定は
-        &quot;C:\Program Files (x86)&quot; ではなくて普通のフォルダーでよい。</li>
+    <li>Windows 11上でインストーラーを実行する。インストール先は任意の普通のフォルダーでよい。</li>
     <li>下のダイアログボックスが出るまで進める。これ以上は使用者登録がないと進められない。<br>
         <br>
         <img src="dialogbox.jpg" width="671" height="373"><br>
@@ -59,7 +127,5 @@ target="_blank">転載</a>した。ファイルサイズは公式ページ記載
 <p>　</p>
 
 <p><a href="../">＜戻る＞</a></p>
-
-<p>　</p>
 </body>
 </html>
