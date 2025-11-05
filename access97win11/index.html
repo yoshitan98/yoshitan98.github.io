@@ -1,0 +1,56 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>MS Access 97をWindows 11で使う</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<p><font size="4"><strong>MS Access 97をWindows 11で使う</strong></font>　<font size="2">2025年11月5日更新</font></p>
+
+<p>　</p>
+
+<p>個人用PCとしてMS Officeプレインストール機を買うようになる前
+Microosoft Office 97 Proessional までは購入をしていた。このバージョンでMS
+Officeは十分な機能か揃ったように思う。プレインストールPCにはAccessは付いていないので始めの頃はAccessだけ追加インストールをしていたが、新しいバージョンの上に古いバージョンをインストールするのは順番が逆で、動作はするものの少し気持ち悪いので、その後は
+Windows XP の仮想マシンにAccessをインストールして使って来た。個人のデータ処理にはAccess
+97で十分でしかも軽いので新しいバージョンを安くはない金額で買う気にはならなかった。しかし一々仮想マシンを起動することなくWindows
+11にインストールできないかを今更ながら試してみることにした。</p>
+
+<p>と言ってもそのままインストールすればシステムフォルダーやレジストリーを大いに汚してくれるだろうから、<a href="https://freesoft-100.com/review/sandboxie.html"
+target="_blank">Sandboxie Classic</a> にAcess 97用のサンドボックスを作成してそこにインストールすることにした。</p>
+
+<p>インストール時に「データアクセス」の選択に<br>
+　　Microsoft Access ドライバ<br>
+　　dBASE、Microsoft FoxPro のドライバ<br>
+　　Microsoft Excel ドライバ<br>
+　　テキストおよび HTML ドライバ<br>
+があるが、テキストおよび HTML ドライバ 以外にチェックを付けておくとインストールは失敗してしまう。また、インストール途中
+CTL3D32.DLL がないというメッセージが出たが続行はできたので、インストール終了後サンドボックスの
+SysWOW64 フォルダーにWindows XPから持ってきたファイルをコピーしておいた。</p>
+
+<p>インストール後起動して動作もする。しかし、テキストやHTMLをインポートやリンクしようとすると「ウィザードが見つからないか、Windows
+レジストリが正しく設定されていません」というエラーになってしまう。テキストのインポート・エクスポートウィザードは
+WZLIB80.mde というファイルのはずで、レジストリーを見ても問題があるとは思われない。色々試してみたができない。しかしマクロの「テキスト変換」でCSVのインポート・エクスポートだけはできることがわかったので一安心。他のMS
+AccessのMDBファイルとのやり取りはウィザードでもできる（97形式のMDBなので現在扱えるソフトはほとんどないのではないかな）。ODBCも使えるので32ビット版のドライバーをサンドボックスにインストールすれば今よく見かけるSQLiteのデータベースも扱える。</p>
+
+<p>Accessの代替となるフリーソフトを色々探してみたが直感的にデータを扱えるものは見つからなかった。個人的な処理で複雑なSQLを書く必要もないしAccess
+97で十分。LibreOfficeがMS Officeの代替としてよく挙げられるが、データベースはインポート・エクスポートが表計算経由でしか行えず行数に制限があるという大きな問題がある。どうしてそのような仕様に固執するのかな。</p>
+
+<p>ちなみにSand Boxieのサンドボックス内の実行ファイルを直接ダブルクリックして起動するとサンドボックスの仮想レジストリが破損する恐れがあるそうなので、そのフォルダー内のファイルでも右クリックで「サンドボックス化して実行」とする方がいいらしい。あるいは下のような内容のショートカットやバッチファイルを作っておけばその後もサンドボックス内ですぐに起動できる。</p>
+
+<p>MS Access 97<br>
+&quot;C:\Program Files\Sandboxie\Start.exe&quot; /box:サンドボックス名
+&quot;C:\Program Files (x86)\Microsoft Office 97\Office\msaccess.exe&quot;<br>
+<br>
+ODBCデータソースアドミニストレーター(32ビット)<br>
+&quot;C:\Program Files\Sandboxie\Start.exe&quot; /box:サンドボックス名
+C:\Windows\SysWOW64\odbcad32.exe</p>
+
+<p>　</p>
+
+<p><a href="../">＜戻る＞</a></p>
+</body>
+</html>
