@@ -8,7 +8,7 @@
 
 <body bgcolor="#FFFFFF">
 
-<p><font size="4"><strong>MS Access 97をWindows 11で使う</strong></font>　<font size="2">2025年11月5日更新</font></p>
+<p><font size="4"><strong>MS Access 97をWindows 11で使う</strong></font>　<font size="2">2025年11月8日更新</font></p>
 
 <p>　</p>
 
@@ -20,7 +20,18 @@ Windows XP の仮想マシンにAccessをインストールして使って来た
 11にインストールできないかを今更ながら試してみることにした。</p>
 
 <p>と言ってもそのままインストールすればシステムフォルダーやレジストリーを大いに汚してくれるだろうから、<a href="https://freesoft-100.com/review/sandboxie.html"
-target="_blank">Sandboxie Classic</a> にAcess 97用のサンドボックスを作成してそこにインストールすることにした。</p>
+target="_blank">Sandboxie Classic</a> にAcess 97用のサンドボックスを作成してそこにインストールしてみることにした。</p>
+
+<p>私が購入してあったものは &quot;Microsoft Office 97
+Upgrade Professional Edition&quot; という最初期バージョンで、本来
+MS Office 97 発売前に発売されていた Office を含むMSの特定のソフトがインストールされているPCにだけインストールできるというもの。しかし
+MS Office 2013 がインストールされている仮想マシンにもインストールできていたのでチェックが甘い。</p>
+
+<p>問題はソフト自体は32ビットであるのに SETUP.EXE
+が16ビットであること。otvdm という16ビットプログラムを動作させるプログラムを色々組み合わせてみたがうまくいかなかった。しかし&quot;Microsoft
+Office 97 Professional Service Rease&quot;（SR-1）というCD-ROMも持っておりその中の
+32ビットの SETUP.EXE に差し替えてみたら動作した（元のCD-ROMの内容をローカルディスクにコピーした上で）。MS
+Office 2019 がプレインストールされているPCを使ったところインストール可否のチェックに何分もかかったが結局インストールは可であった。一体何をチェックしてしているのだろうか。</p>
 
 <p>インストール時に「データアクセス」の選択に<br>
 　　Microsoft Access ドライバ<br>
