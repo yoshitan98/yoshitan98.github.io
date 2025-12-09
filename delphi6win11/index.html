@@ -1,14 +1,16 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type"
+content="text/html; charset=utf-8">
 <meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
 <title>Delphi 6をWindows 11で使う</title>
 </head>
 
 <body bgcolor="#FFFFFF">
 
-<p><font size="4"><strong>Delphi 6をWindows 11で使う</strong></font>　<font size="2">2025年10月29日更新</font></p>
+<p><font size="4"><strong>Delphi 6をWindows 11で使う</strong></font>　<font
+size="2">2025年12月9日更新</font></p>
 
 <p>　</p>
 
@@ -69,7 +71,8 @@ Files (x86)\Borland&quot; ということにして書く。</p>
         を汚さないようにする。Windows 11 の &quot;C:\Program
         Files (x86)\Borland&quot; の中に &quot;SysWOW64&quot;
         フォルダーを作成してそこに入れることにした。CD-ROMの
-        \install\system32 のファイルリストは<a href="system32.txt" target="_blank">これ</a>。それを参照すればよい。ただしアップデートで追加された
+        \install\system32 のファイルリストは<a
+        href="system32.txt" target="_blank">これ</a>。それを参照すればよい。ただしアップデートで追加された
         soaprtl60.bpl と soaprtl60.map はリストに入っていない。</li>
     <li>Windows XP でレジストリー HKEY_LOCAL_MACHINE\SOFTWARE\Borland
         と HKEY_CURRENT_USER\Software\Borland とをregファイルにエクスポートする。</li>
@@ -78,6 +81,10 @@ Files (x86)\Borland&quot; ということにして書く。</p>
         を &quot;HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node&quot;
         に全部置換する必要がある。また、インストール先のフォルダー名等も全部書き換える。さらに
         HKEY_CURRENT_USER\Software\Borland\Delphi\6.0 の LM は削除しておく。その後regファイルを開いてレジストリーに追加をする。</li>
+    <li>コマンドプロンプトを管理者として実行し、<br>
+        C:\Windows\SysWOW64\regsvr32 &quot;C:\Program Files (x86)\Common
+        Files\Borland Shared\Debugger\BORdbg61.dll&quot;<br>
+        でデバッガーの登録をする</li>
     <li>環境変数 Path に<br>
         C:\Program Files (x86)\Borland\SysWOW64<br>
         C:\Program Files (x86)\Borland\Delphi6\Bin<br>
@@ -87,7 +94,7 @@ Files (x86)\Borland&quot; ということにして書く。</p>
         を起動してみる。もしインストール番号とインストールキーの入力を求められてらCD-ROMが手元になくても
         HKEY_CURRENT_USER\Software\Borland\Delphi\6.0 に LMLIC
         と LMKEY として記録されている。使用許諾コードはもはやネットで取得できないので「後で取得する」でよい。</li>
-    <li>設定やレジストリ書き換えを行って動作するように調整する。環境を汚したくないという方針なのでActiveXのインストールはしておらずそれを利用したコンポーネントは動作しない。他にも起動しないツールがあるかもしれない。</li>
+    <li>動作しなければ設定やレジストリ書き換えを行って調整する。私は環境を汚したくないという方針でActiveXのインストールはしなかったのでそれを利用したコンポーネントは動作しないが、気にしない方はコピーしたファイル中のocxファイルを5.の方法で登録すればよい。</li>
 </ol>
 
 <p>　</p>
@@ -96,9 +103,11 @@ Files (x86)\Borland&quot; ということにして書く。</p>
 
 <p>上記のようにインストールした方でもCD-ROMから普通にインストールしても構わないという方でも使用許諾コードについては知っておく方がよいことがある。</p>
 
-<p>公式の<a href="https://docwiki.embarcadero.com/Support/ja/Delphi_6の使用許諾FAQ"
+<p>公式の<a
+href="https://docwiki.embarcadero.com/Support/ja/Delphi_6の使用許諾FAQ"
 target="_blank">「使用許諾FAQ」</a>というページを見ると現在ネットで使用者許諾コードは取得できないが「使用許諾コード取得代行を依頼」という方法は用意しているとのこと。しかし動作保証対象外のWindows
-10/11では<a href="https://docwiki.embarcadero.com/Support/ja/Delphi_6で使用許諾が完了したのに、製品を起動すると使用許諾ウィザードが表示されます"
+10/11では<a
+href="https://docwiki.embarcadero.com/Support/ja/Delphi_6で使用許諾が完了したのに、製品を起動すると使用許諾ウィザードが表示されます"
 target="_blank">「使用許諾が完了したのに、製品を起動すると使用許諾ウィザードが表示されます」</a>という問題が発生する。しかも「登録回数の上限」というものもあるので「使用許諾コード取得代行を依頼」も回数が制限されてしまうだろう。そのため使用許諾コードは「後で取得する」で使用を続ける。</p>
 
 <p>ネット上にWindows 10で「後で取得する」にしても効かなくなることがあるように書かれていたが、その時にはレジストリー
@@ -109,8 +118,10 @@ HKEY_CURRENT_USER\Software\Borland\Delphi\6.0 の LM を削除すればいいよ
 <p>【IV】 おまけ</p>
 
 <p>かつて商用利用不可という条件で Delphi 6
-Personal というソフトが<a href="https://web.archive.org/web/20011211224056/http://www.borland.co.jp/delphi/personal/"
-target="_blank">公式ページ</a>（インターネットアーカイブ）や雑誌付録でフリー配布されていた。インストールするには使用者登録が必要だが今では登録できないのでインストーラーを持っていてもインストールはできない。しかし今でもインストール無しでコマンドラインコンパイラーだけは使用できてしまうことがわかった。インストーラーはインターネットアーカイブにも残っていないので私が持っているものを勝手に<a href="https://yoshitan.stars.ne.jp/delphi6win11/BorlandDelphiPersonalEditionJP.exe"
+Personal というソフトが<a
+href="https://web.archive.org/web/20011211224056/http://www.borland.co.jp/delphi/personal/"
+target="_blank">公式ページ</a>（インターネットアーカイブ）や雑誌付録でフリー配布されていた。インストールするには使用者登録が必要だが今では登録できないのでインストーラーを持っていてもインストールはできない。しかし今でもインストール無しでコマンドラインコンパイラーだけは使用できてしまうことがわかった。インストーラーはインターネットアーカイブにも残っていないので私が持っているものを勝手に<a
+href="https://yoshitan.stars.ne.jp/delphi6win11/BorlandDelphiPersonalEditionJP.exe"
 target="_blank">転載</a>した。ファイルサイズは公式ページ記載と一致しているがMD5等は書かれていないので怪しいと思う方は仮想環境やサンドボックス上でテストして下さい。</p>
 
 <ol type="1" start="1">
