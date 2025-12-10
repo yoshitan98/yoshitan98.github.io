@@ -10,16 +10,24 @@ content="text/html; charset=utf-8">
 <body bgcolor="#FFFFFF">
 
 <p><font size="4"><strong>Delphi 6をWindows 11で使う</strong></font>　<font
-size="2">2025年12月9日更新</font></p>
+size="2">2025年12月10日更新</font></p>
 
 <p>　</p>
 
 <p>私はPascalを Turbo Pascal 3 以来色々Borland製品を購入して使用して来たが.Netを使わないWindowsデスクトップアプリを作成するには
-Delphi 6 で十分だと思う。ネットに書かれているのを見ると一応Windows
-11にもインストールできるらしい.。しかし古いいソフトをCD-ROMからインストールして環境を汚したくない。かつて使用していたWindows
-XPを仮想環境にした中に Delphi 6 Professional
-がインストールしてあるのだが、そのファイルとレジストリーとをコピーして使えるかどうか試してみた。今は
+Delphi 6 で十分だと思う。軽いし。ネットを見ると一応Windows
+11にもインストールできるらしい.。しかし古いいソフトをCD-ROMからインストールして環境を汚したくない。私はかつて使用していたWindows
+XP（16ビット）を仮想環境にした中に Delphi 6
+Professional がインストールしてあるのだが、そのファイルとレジストリーとをコピーして使えるかどうか試してみた。今は
 Free Pascal/Lazurus をメインに使っているのでDelphi 6が必要ということでもないのだが。</p>
+
+<p>生のWindowsでなくてもよければ <a
+href="https://freesoft-100.com/review/sandboxie.html"
+target="_blank">Sandboxie</a> にインストールして使うか（パフォーマンスの違いはわからないほど小さい）、またはその後サンドボックスフォルダーからコピーをするという方法でもいいでしょう。</p>
+
+<p>CD-ROMからインストールしたらアップデートしておく方がいいがアップデート用ファイルはインターネットアーカイブにも残っていないので私が保存しておいたファイルを勝手に<a
+href="https://yoshitan.stars.ne.jp/delphi6win11/Delphi6Updates.zip"
+target="_blank">転載</a>した。説明をよく読んで必要なファイルと適用する順番をまちがえないようにして下さい。</p>
 
 <p>　</p>
 
@@ -41,15 +49,13 @@ dcc60.dl<br>
 のみだと思う。足りなかったらエラーが出るだろうからその時追加すればいいだろう。</p>
 
 <p>それと dcc32.exe のコマンドラインオプションを記述しておくための
-dcc32.cfg があってもよい。その中にたとえば<br>
+dcc32.cfg というテキストファイルがあるとよい。その中にたとえば<br>
 -U&quot;Libフォルダーの絶対パス;他の自作unitの保存フォルダーの絶対パス&quot;<br>
 のように書いて置けば一々コマンドラインで指定せずに済む。<br>
 Binフォルダーにはパスを通しておく。</p>
 
-<p>コンソールアプリだけでなくてGUIアプリもコンパイルできる。IDEでＧＵＩアプリのフォームファイル*.dfmをバイナリー形式で保存する設定にしてあったとしても
-convert.exe でテキスト形式に変換できてエディターで編集できるので既存ソースを修正してコンパイルすることもできる。</p>
-
-<p>Delphi 6のインストールCD-ROMにはフォルダー／ファイルが展開された状態で入っているのでそれを使うこともできるがアップデートがされていないことに注意。</p>
+<p>コンソールアプリだけでなくてGUIアプリもコンパイルできる。*.dfmがバイナリー形式になっていても
+convert.exe でテキスト形式に変換できてエディターで編集できるので既存フォーム修正してコンパイルすることもできる（ちょっと面倒だが）。</p>
 
 <p>　</p>
 
@@ -67,15 +73,14 @@ Files (x86)\Borland&quot; ということにして書く。</p>
         にコピーする。</li>
     <li>Windows XP の &quot;C:\WINDOWS\system32&quot;
         フォルダの中から Delphi 6
-        がコピーしたファイルを分離して Windows 11
-        を汚さないようにする。Windows 11 の &quot;C:\Program
-        Files (x86)\Borland&quot; の中に &quot;SysWOW64&quot;
-        フォルダーを作成してそこに入れることにした。CD-ROMの
-        \install\system32 のファイルリストは<a
-        href="system32.txt" target="_blank">これ</a>。それを参照すればよい。ただしアップデートで追加された
+        がコピーしたファイルを識別して Windows 11
+        の &quot;C:\Program Files (x86)\Borland&quot; の中に
+        &quot;SysWOW64&quot; フォルダーを作成してそこにコピーした。CD-ROMの
+        \install\system32 の<a href="system32.txt"
+        target="_blank">ファイルリスト</a>が参考になる。ただしアップデートで追加された
         soaprtl60.bpl と soaprtl60.map はリストに入っていない。</li>
     <li>Windows XP でレジストリー HKEY_LOCAL_MACHINE\SOFTWARE\Borland
-        と HKEY_CURRENT_USER\Software\Borland とをregファイルにエクスポートする。</li>
+        と HKEY_CURRENT_USER\Software\Borland とをregedit.exeでregファイルにエクスポートする（Sandboxieの場合はC:\Windows\SysWOW64\regedit.exeを右クリックで「サンドボックス化して実行」してエクスポート）。</li>
     <li>regファイルをテキストエディターで編集する。HKEY_LOCAL_MACHINE\SOFTWARE\Borland
         のregファイルでは &quot;HKEY_LOCAL_MACHINE\SOFTWARE&quot;
         を &quot;HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node&quot;
@@ -84,17 +89,17 @@ Files (x86)\Borland&quot; ということにして書く。</p>
     <li>コマンドプロンプトを管理者として実行し、<br>
         C:\Windows\SysWOW64\regsvr32 &quot;C:\Program Files (x86)\Common
         Files\Borland Shared\Debugger\BORdbg61.dll&quot;<br>
-        でデバッガーの登録をする</li>
+        でデバッガーの登録をする。アップデートしていない場合にはBORdbg60.dl。</li>
     <li>環境変数 Path に<br>
         C:\Program Files (x86)\Borland\SysWOW64<br>
         C:\Program Files (x86)\Borland\Delphi6\Bin<br>
         C:\Program Files (x86)\Borland\Delphi6\Projects\Bpl<br>
         を追加する。</li>
     <li>&quot;C:\Program Files (x86)\Borland\Delphi6\Bin\delphi32.exe&quot;
-        を起動してみる。もしインストール番号とインストールキーの入力を求められてらCD-ROMが手元になくても
+        を起動してみる。もしインストール番号とインストールキーの入力を求められてCD-ROMが手元になくても
         HKEY_CURRENT_USER\Software\Borland\Delphi\6.0 に LMLIC
         と LMKEY として記録されている。使用許諾コードはもはやネットで取得できないので「後で取得する」でよい。</li>
-    <li>動作しなければ設定やレジストリ書き換えを行って調整する。私は環境を汚したくないという方針でActiveXのインストールはしなかったのでそれを利用したコンポーネントは動作しないが、気にしない方はコピーしたファイル中のocxファイルを5.の方法で登録すればよい。</li>
+    <li>私の場合コンポーネントパレットが正しく表示されていなかったので設定変更やレジストリのそれらしい箇所の書き換えを行って調整した。私は環境を汚したくないという方針でActiveXのインストールはしなかったのでそれを利用したコンポーネントは動作しないが、気にしない方はコピーしたファイル中のocxファイルを5.の方法で登録すればよい。</li>
 </ol>
 
 <p>　</p>
