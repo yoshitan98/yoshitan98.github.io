@@ -10,7 +10,7 @@ content="text/html; charset=utf-8">
 <body bgcolor="#FFFFFF">
 
 <p><font size="4"><strong>Delphi 6をWindows 11で使う</strong></font>　<font
-size="2">2025年12月10日更新</font></p>
+size="2">2025年12月14日更新</font></p>
 
 <p>　</p>
 
@@ -85,7 +85,9 @@ Files (x86)\Borland&quot; ということにして書く。</p>
         のregファイルでは &quot;HKEY_LOCAL_MACHINE\SOFTWARE&quot;
         を &quot;HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node&quot;
         に全部置換する必要がある。また、インストール先のフォルダー名等も全部書き換える。さらに
-        HKEY_CURRENT_USER\Software\Borland\Delphi\6.0 の LM は削除しておく。その後regファイルを開いてレジストリーに追加をする。</li>
+        HKEY_CURRENT_USER\Software\Borland\Delphi\6.0 の LM は削除しておく。その後regファイルをレジストリーに追加をする。普通はregファイルをダブルクリックするところだがその時使用されるWindows
+        11のregedit.exeはバグで全体がインポートされないことがあるのでコマンドラインを管理者として実行して
+        reg import regファイル　と実行するのがよい。</li>
     <li>コマンドプロンプトを管理者として実行し、<br>
         C:\Windows\SysWOW64\regsvr32 &quot;C:\Program Files (x86)\Common
         Files\Borland Shared\Debugger\BORdbg61.dll&quot;<br>
@@ -99,7 +101,7 @@ Files (x86)\Borland&quot; ということにして書く。</p>
         を起動してみる。もしインストール番号とインストールキーの入力を求められてCD-ROMが手元になくても
         HKEY_CURRENT_USER\Software\Borland\Delphi\6.0 に LMLIC
         と LMKEY として記録されている。使用許諾コードはもはやネットで取得できないので「後で取得する」でよい。</li>
-    <li>私の場合コンポーネントパレットが正しく表示されていなかったので設定変更やレジストリのそれらしい箇所の書き換えを行って調整した。私は環境を汚したくないという方針でActiveXのインストールはしなかったのでそれを利用したコンポーネントは動作しないが、気にしない方はコピーしたファイル中のocxファイルを5.の方法で登録すればよい。</li>
+    <li>私は環境を汚したくないという方針でActiveXのインストールはしなかったのでそれを利用したコンポーネントは動作しないが、気にしない方はコピーしたファイル中のocxファイルを5.の方法で登録すればよい。</li>
 </ol>
 
 <p>　</p>
