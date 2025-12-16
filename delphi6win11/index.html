@@ -10,7 +10,7 @@ content="text/html; charset=utf-8">
 <body bgcolor="#FFFFFF">
 
 <p><font size="4"><strong>Delphi 6をWindows 11で使う</strong></font>　<font
-size="2">2025年12月14日更新</font></p>
+size="2">2025年12月16日更新</font></p>
 
 <p>　</p>
 
@@ -80,14 +80,13 @@ Files (x86)\Borland&quot; ということにして書く。</p>
         target="_blank">ファイルリスト</a>が参考になる。ただしアップデートで追加された
         soaprtl60.bpl と soaprtl60.map はリストに入っていない。</li>
     <li>Windows XP でレジストリー HKEY_LOCAL_MACHINE\SOFTWARE\Borland
-        と HKEY_CURRENT_USER\Software\Borland とをregedit.exeでregファイルにエクスポートする（Sandboxieの場合はC:\Windows\SysWOW64\regedit.exeを右クリックで「サンドボックス化して実行」してエクスポート）。</li>
+        と HKEY_CURRENT_USER\Software\Borland とをregeditでregファイルにエクスポートする（Sandboxieの場合はC:\Windows\SysWOW64\regedit.exeを右クリックで「サンドボックス化して実行」してエクスポート）。</li>
     <li>regファイルをテキストエディターで編集する。HKEY_LOCAL_MACHINE\SOFTWARE\Borland
         のregファイルでは &quot;HKEY_LOCAL_MACHINE\SOFTWARE&quot;
         を &quot;HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node&quot;
         に全部置換する必要がある。また、インストール先のフォルダー名等も全部書き換える。さらに
-        HKEY_CURRENT_USER\Software\Borland\Delphi\6.0 の LM は削除しておく。その後regファイルをレジストリーに追加をする。普通はregファイルをダブルクリックするところだがその時使用されるWindows
-        11のregedit.exeはバグで全体がインポートされないことがあるのでコマンドラインを管理者として実行して
-        reg import regファイル　と実行するのがよい。</li>
+        HKEY_CURRENT_USER\Software\Borland\Delphi\6.0 の LM は削除しておく。その後regファイルをregeditでレジストリーにインポートをする。<br>
+        Windows 11のregeditは対象が大きいregファイルを扱うと全体がエクスポート・インポートされないことがある信頼性に欠けるツールなので結果を確認して問題があればregファイルを分割して処理する。</li>
     <li>コマンドプロンプトを管理者として実行し、<br>
         C:\Windows\SysWOW64\regsvr32 &quot;C:\Program Files (x86)\Common
         Files\Borland Shared\Debugger\BORdbg61.dll&quot;<br>
