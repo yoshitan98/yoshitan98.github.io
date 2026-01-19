@@ -1,0 +1,78 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=x-sjis">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>「将棋DB2」から棋譜を半自動でダウンロード</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<p><font size="4"><strong>「</strong></font><a href="https://shogidb2.com/" target="_blank"><font size="4"><strong>将棋</strong></font><font size="4" face="MS Sans Serif"><strong>DB2</strong></font></a><font size="4"><strong>」から棋譜を半自動でダウンロード</strong>　</font><font size="2">2026年1月19日更新</font></p>
+
+<p>　</p>
+
+<p>Windowsコマンドプロンプトでの操作をご存知の方のために書いています。</p>
+
+<p>用意するもの</p>
+
+<ul>
+    <li><a href="https://www.vector.co.jp/soft/winnt/util/se115105.html"
+        target="_blank">UWSC</a></li>
+    <li><a href="https://www.vector.co.jp/soft/win95/util/se093501.html"
+        target="_blank">Clip2Txt</a> または代替して使えるコマンド</li>
+    <li>GNU wget コマンドまたは代替して使えるツール</li>
+    <li>GNU grep コマンドまたは代替して使えるツール</li>
+    <li>GNU uniq コマンドまたは代替して使えるツール</li>
+    <li>Windows標準の「メモ帳」よりも高機能のテキストエディターやエクセル等</li>
+</ul>
+
+<p>手順</p>
+
+<ol>
+    <li>たとえば「新着の棋譜」の1ページ目のアドレスは
+        https://shogidb2.com/newrecords?q=&amp;page=1
+        でページを選択するボタンは50ページまでしかないが、アドレスで指定すると
+        https://shogidb2.com/newrecords?q=&amp;page=500
+        のように500ページまで開ける。そこで、<br>
+        <br>
+        wget https://shogidb2.com/newrecords?q=&amp;page=1<br>
+        wget https://shogidb2.com/newrecords?q=&amp;page=2<br>
+        wget https://shogidb2.com/newrecords?q=&amp;page=3<br>
+        ・・・・・・<br>
+        <br>
+        のようなダウンロードしたい棋譜が含まれるページをまとめてダウンロードするバッチファイルを作成し、wget
+        コマンドにパスを通して実行してページのhtmlをダウンロードする。<br>
+        <br>
+        </li>
+    <li>どこかのフォルダにダウンロードしたファイルだけをコピーしてそこをカレントとして
+        grep コマンドと uniq コマンドにパスを通してコマンドプロンプトで<br>
+        <br>
+        for %f in (*.*) do grep -Eho &quot;[0-9a-f]{40}&quot;
+        &lt; %f | uniq | sort &gt;&gt; ID.txt<br>
+        <br>
+        を実行すると40桁の棋譜IDが&quot;ID.txt&quot;に書き出される。<br>
+        <br>
+        </li>
+    <li>Clip2Txt コマンドにパスを通し、Microsoft Edge
+        を起動した上で <a href="GetKifu.zip" target="_blank">&quot;GetKifu.zip&quot;</a> 中の &quot;GetKifu.uws&quot;
+        と &quot;ID.txt&quot; とを同じフォルダに置いて
+        UWSC で実行すると kif
+        ファイルのダウンロードが行われる。実行速度は遅いが終了するまでPCには触らない。途中で一時終了するには
+        Ctrl + F2 キーを押す。&quot;ID.txt&quot; の終了したIDを削除すれば再開できる。Microsoft
+        Edge は F11 キーで全画面表示にしているので
+        F11 を再度押すと元に戻る。<br>
+        1920ｘ1080の画面で Microsoft Edge の文字の大きさ100%で動作確認しているが、違う環境では
+        &quot;GetKifu.uws&quot; の書き換えが必要かもしれない。また、実行速度を速めるように書き換えることもできるがあまり速くするとダウンロードを取りこぼすかもしれない。<br>
+        千日手局ではKIF形式ファイルが存在しないようなのでCSA形式ファイルを代わりにダウンロードしている。<br>
+        </li>
+</ol>
+
+<p>「将棋DB2」サイトの変更によりいつ動作しなくなるかはわからない。その時
+&quot;GetKifu.uws&quot; の変更だけで済めばよいのだが・・・・。</p>
+
+<p>　</p>
+
+<p><a href="../" target="_blank">戻る</a></p>
+</body>
+</html>
