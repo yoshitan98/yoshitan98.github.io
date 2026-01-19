@@ -1,78 +1,76 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=x-sjis">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
-<title>�u����DB2�v��������𔼎����Ń_�E�����[�h</title>
+<title>「将棋DB2」から棋譜を半自動でダウンロード</title>
 </head>
 
 <body bgcolor="#FFFFFF">
 
-<p><font size="4"><strong>�u</strong></font><a href="https://shogidb2.com/" target="_blank"><font size="4"><strong>����</strong></font><font size="4" face="MS Sans Serif"><strong>DB2</strong></font></a><font size="4"><strong>�v��������𔼎����Ń_�E�����[�h</strong>�@</font><font size="2">2026�N1��19���X�V</font></p>
+<p><font size="4"><strong>「</strong></font><a href="https://shogidb2.com/" target="_blank"><font size="4"><strong>将棋</strong></font><font size="4" face="MS Sans Serif"><strong>DB2</strong></font></a><font size="4"><strong>」から棋譜を半自動でダウンロード</strong>　</font><font size="2">2026年1月19日更新</font></p>
 
-<p>�@</p>
+<p>　</p>
 
-<p>Windows�R�}���h�v�����v�g�ł̑���������m�̕��̂��߂ɏ����Ă��܂��B</p>
+<p>Windowsコマンドプロンプトでの操作をご存知の方のために書いています。</p>
 
-<p>�p�ӂ������</p>
+<p>用意するもの</p>
 
 <ul>
-    <li><a href="https://www.vector.co.jp/soft/winnt/util/se115105.html"
-        target="_blank">UWSC</a></li>
-    <li><a href="https://www.vector.co.jp/soft/win95/util/se093501.html"
-        target="_blank">Clip2Txt</a> �܂��͑�ւ��Ďg����R�}���h</li>
-    <li>GNU wget �R�}���h�܂��͑�ւ��Ďg����c�[��</li>
-    <li>GNU grep �R�}���h�܂��͑�ւ��Ďg����c�[��</li>
-    <li>GNU uniq �R�}���h�܂��͑�ւ��Ďg����c�[��</li>
-    <li>Windows�W���́u�������v�������@�\�̃e�L�X�g�G�f�B�^�[��G�N�Z����</li>
+    <li><a href="https://www.vector.co.jp/soft/winnt/util/se115105.html" target="_blank">UWSC</a></li>
+    <li><a href="https://www.vector.co.jp/soft/win95/util/se093501.html" target="_blank">Clip2Txt</a> または代替して使えるコマンド</li>
+    <li>GNU wget コマンドまたは代替して使えるツール</li>
+    <li>GNU grep コマンドまたは代替して使えるツール</li>
+    <li>GNU uniq コマンドまたは代替して使えるツール</li>
+    <li>Windows標準の「メモ帳」よりも高機能のテキストエディターやエクセル等</li>
 </ul>
 
-<p>�菇</p>
+<p>手順</p>
 
 <ol>
-    <li>���Ƃ��΁u�V���̊����v��1�y�[�W�ڂ̃A�h���X��
+    <li>たとえば「新着の棋譜」の1ページ目のアドレスは
         https://shogidb2.com/newrecords?q=&amp;page=1
-        �Ńy�[�W��I������{�^����50�y�[�W�܂ł����Ȃ����A�A�h���X�Ŏw�肷���
+        でページを選択するボタンは50ページまでしかないが、アドレスで指定すると
         https://shogidb2.com/newrecords?q=&amp;page=500
-        �̂悤��500�y�[�W�܂ŊJ����B�����ŁA<br>
+        のように500ページまで開ける。そこで、<br>
         <br>
         wget https://shogidb2.com/newrecords?q=&amp;page=1<br>
         wget https://shogidb2.com/newrecords?q=&amp;page=2<br>
         wget https://shogidb2.com/newrecords?q=&amp;page=3<br>
-        �E�E�E�E�E�E<br>
+        ・・・・・・<br>
         <br>
-        �̂悤�ȃ_�E�����[�h�������������܂܂��y�[�W���܂Ƃ߂ă_�E�����[�h����o�b�`�t�@�C�����쐬���Awget
-        �R�}���h�Ƀp�X��ʂ��Ď��s���ăy�[�W��html���_�E�����[�h����B<br>
+        のようなダウンロードしたい棋譜が含まれるページをまとめてダウンロードするバッチファイルを作成し、wget
+        コマンドにパスを通して実行してページのhtmlをダウンロードする。<br>
         <br>
         </li>
-    <li>�ǂ����̃t�H���_�Ƀ_�E�����[�h�����t�@�C���������R�s�[���Ă������J�����g�Ƃ���
-        grep �R�}���h�� uniq �R�}���h�Ƀp�X��ʂ��ăR�}���h�v�����v�g��<br>
+    <li>どこかのフォルダにダウンロードしたファイルだけをコピーしてそこをカレントとして
+        grep コマンドと uniq コマンドにパスを通してコマンドプロンプトで<br>
         <br>
         for %f in (*.*) do grep -Eho &quot;[0-9a-f]{40}&quot;
         &lt; %f | uniq | sort &gt;&gt; ID.txt<br>
         <br>
-        �����s�����40���̊���ID��&quot;ID.txt&quot;�ɏ����o�����B<br>
+        を実行すると40桁の棋譜IDが&quot;ID.txt&quot;に書き出される。<br>
         <br>
         </li>
-    <li>Clip2Txt �R�}���h�Ƀp�X��ʂ��AMicrosoft Edge
-        ���N��������� <a href="GetKifu.zip" target="_blank">&quot;GetKifu.zip&quot;</a> ���� &quot;GetKifu.uws&quot;
-        �� &quot;ID.txt&quot; �Ƃ𓯂��t�H���_�ɒu����
-        UWSC �Ŏ��s����� kif
-        �t�@�C���̃_�E�����[�h���s����B���s���x�͒x�����I������܂�PC�ɂ͐G��Ȃ��B�r���ňꎞ�I������ɂ�
-        Ctrl + F2 �L�[�������B&quot;ID.txt&quot; �̏I������ID���폜����΍ĊJ�ł���BMicrosoft
-        Edge �� F11 �L�[�őS��ʕ\���ɂ��Ă���̂�
-        F11 ���ēx�����ƌ��ɖ߂�B<br>
-        1920��1080�̉�ʂ� Microsoft Edge �̕����̑傫��100%�œ���m�F���Ă��邪�A�Ⴄ���ł�
-        &quot;GetKifu.uws&quot; �̏����������K�v��������Ȃ��B�܂��A���s���x�𑬂߂�悤�ɏ��������邱�Ƃ��ł��邪���܂葬������ƃ_�E�����[�h����肱�ڂ���������Ȃ��B<br>
-        �����ǂł�KIF�`���t�@�C�������݂��Ȃ��悤�Ȃ̂�CSA�`���t�@�C�������Ƀ_�E�����[�h���Ă���B<br>
+    <li>Clip2Txt コマンドにパスを通し、Microsoft Edge
+        を起動した上で <a href="GetKifu.zip" target="_blank">&quot;GetKifu.zip&quot;</a> 中の &quot;GetKifu.uws&quot;
+        と &quot;ID.txt&quot; とを同じフォルダに置いて
+        UWSC で実行すると kif
+        ファイルのダウンロードが行われる。実行速度は遅いが終了するまでPCには触らない。途中で一時終了するには
+        Ctrl + F2 キーを押す。&quot;ID.txt&quot; の終了したIDを削除すれば再開できる。Microsoft
+        Edge は F11 キーで全画面表示にしているので
+        F11 を再度押すと元に戻る。<br>
+        1920ｘ1080の画面で Microsoft Edge の文字の大きさ100%で動作確認しているが、違う環境では
+        &quot;GetKifu.uws&quot; の書き換えが必要かもしれない。また、実行速度を速めるように書き換えることもできるがあまり速くするとダウンロードを取りこぼすかもしれない。<br>
+        千日手局ではKIF形式ファイルが存在しないようなのでCSA形式ファイルを代わりにダウンロードしている。<br>
         </li>
 </ol>
 
-<p>�u����DB2�v�T�C�g�̕ύX�ɂ�肢���삵�Ȃ��Ȃ邩�͂킩��Ȃ��B���̎�
-&quot;GetKifu.uws&quot; �̕ύX�����ōς߂΂悢�̂����E�E�E�E�B</p>
+<p>「将棋DB2」サイトの変更によりいつ動作しなくなるかはわからない。その時
+&quot;GetKifu.uws&quot; の変更だけで済めばよいのだが・・・・。</p>
 
-<p>�@</p>
+<p>　</p>
 
-<p><a href="../" target="_blank">�߂�</a></p>
+<p><a href="../" target="_blank">戻る</a></p>
 </body>
 </html>
