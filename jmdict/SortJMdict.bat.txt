@@ -1,0 +1,6 @@
+rem JMDict をルビでソートする。2026年3月16日作成。
+rem Rev 1.09 に対応。
+
+sd -f es "\n(<entry>.+$)" "\n" < JMdict > JMdictSorted
+
+sd -f es "^.+\n<JMdict>\n" "" < JMdict | sd "^</JMdict>\n" "" | sd -f e "\n" "@LF@" | sd -f e "</entry>@LF@" "</entry>\n" | sd "(^.+?<reb>)(.+?)(</reb>.+$)" "$2,$1$2$3" | C:\cygwin64\bin\sort -t ',' | sd "^.+?," "" | sd -f e "@LF@" "\n" | sd -f e "$" "</JMdict>\n" >> JMdictSorted

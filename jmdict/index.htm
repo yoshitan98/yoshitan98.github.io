@@ -1,0 +1,43 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>日本語→多言語辞書 JMdict を EPWING に変換する</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<p><font size="4"><strong>日本語→多言語辞書 JMdict を
+EPWING に変換する</strong></font>　<font size="2">2026年3月16日</font></p>
+
+<p>　</p>
+
+<p>毎日更新されている 日本語→多言語辞書 <a href="https://www.edrdg.org/jmdict/j_jmdict.html" target="_blank">JMdict</a>
+を <a href="https://ebstudio.info/manual/EBStudio2/EBStudio2.html" target="_blank">EBStudio2</a> を使ってEPWING辞書に変換してみた。現在21万以上の語が登録されている。</p>
+
+<p>上記リンク先 &quot;The JMDict Project&quot; の &quot;the
+current version (Unicode UTF8) (Warning! This is a big file.)&quot;
+をダウンローダーで落として7-Zip等を使って
+&quot;JMdict&quot; ファイルを抽出する。それをテキストエディターで見ると
+<a href="https://github.com/chmln/sd" target="_blank">sd</a>
+コマンドだけで EBStudio2 のソースとする html に変換できそうなので<a href="JMdictToHtml.bat" target="_blank">バッチファイル</a>を書いてみた。パイプをいくつもつなげているが
+sd の処理は高速なので問題なし。</p>
+
+<p>&quot;JMdict&quot; を GNU sort を使って かな で事前にソートする<a href="SortJMdict.bat.txt" target="_blank">バッチファイル</a>も書いてみた。Cygwin
+の sort を使った。</p>
+
+<p>EBStudio2 はライセンスを購入してあるので全部の種類のインデックスを作成できるが、後方一致かなインデックスは全部の語がマッチせず使いものにならない。何か仕様のつもりかも知れないがバグと言っていいだろう。</p>
+
+<p>同じ作者の定番ソフト <a href="https://ebstudio.info/manual/EBWin4/EBWin4.html" target="_blank">EBWin4</a> で動作確認したが非ASCIIの欧文文字が小さくなってしまう。旧版
+<a href="https://ebstudio.info/home/EBPocket.html" target="_blank">EBWin</a> の方がまともに表示される。新版はバグっぽい動作をしたりクラッシュしたりと不安定だ。</p>
+
+<p>この作者のソフトはドキュメントも不完全で
+どのように動作するのか細かい所がよくわからないことが多いが、他に選択肢もないのでそれらを使うしかない。掲示板は閉じてしまっているし、メールをしても無視されるだけ。<br>
+</p>
+
+<p>　</p>
+
+<p><a href="../">戻る</a></p>
+</body>
+</html>
