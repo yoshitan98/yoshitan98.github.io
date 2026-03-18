@@ -1,8 +1,8 @@
 rem JMDict をルビでソートする。2026年3月16日作成、3月18日変更。
 rem Rev 1.09 に対応。
 rem sort コマンドは Cygwin と MSYS2 のものに対応。
-rem busybox sort にも対応させるため sort ',' → sort "," に変更。
+rem busybox の sort にも対応させるため sort ',' → sort "," に変更。
 
 sd -f es "\n(<entry>.+$)" "\n" < JMdict > JMdictSorted
 
-sd -f es "^.+\n<JMdict>\n" "" < JMdict | sd "^</JMdict>\n" "" | sd -f e "\n" "@LF@" | sd -f e "</entry>@LF@" "</entry>\n" | sd "(^.+?<reb>)(.+?)(</reb>.+$)" "$2,$1$2$3" | busybox sort -t "," | sd "^.+?," "" | sd -f e "@LF@" "\n" | sd -f e "$" "</JMdict>\n" >> JMdictSorted
+sd -f es "^.+\n<JMdict>\n" "" < JMdict | sd "^</JMdict>\n" "" | sd -f e "\n" "@LF@" | sd -f e "</entry>@LF@" "</entry>\n" | sd "(^.+?<reb>)(.+?)(</reb>.+$)" "$2,$1$2$3" | busybox64u sort -t "," | sd "^.+?," "" | sd -f e "@LF@" "\n" | sd -f e "$" "</JMdict>\n" >> JMdictSorted
