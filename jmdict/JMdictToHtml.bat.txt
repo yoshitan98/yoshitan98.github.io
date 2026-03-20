@@ -1,6 +1,6 @@
-rem JMDict を EBStudio2 ソースの JMDict.html に変換する。2026年3月16日作成。
+rem JMDict を EBStudio2 ソースの JMDict.html に変換する。2026年3月16日作成、3月20日更新（rem行のみ）。
 rem Rev 1.09 に対応。
-rem <ke_inf> と <re_inf> タグは日本人が使用するには不要と思うので削除した。
+rem <ke_inf> と <re_inf> タグは辞書上のどこに記述するか思いつかず、また、sdで処理するのも少し面倒なのでとりあえずカットした。
 rem 略語リストにメニューを使っているのでメニュー検索を有効にすること。
 
 rem 略語リストの部分を作成

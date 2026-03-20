@@ -9,12 +9,13 @@
 <body bgcolor="#FFFFFF">
 
 <p><font size="4"><strong>日本語→多言語辞書 JMdict を
-EPWING に変換する</strong></font>　<font size="2">2026年3月18日</font></p>
+EPWING に変換する</strong></font>　<font size="2">2026年3月20日更新</font></p>
 
 <p>　</p>
 
 <p>毎日更新されている 日本語→多言語辞書 <a href="https://www.edrdg.org/jmdict/j_jmdict.html" target="_blank">JMdict</a>
-を <a href="https://ebstudio.info/manual/EBStudio2/EBStudio2.html" target="_blank">EBStudio2</a> を使ってEPWING辞書に変換してみた。現在21万以上の語が登録されている。</p>
+を <a href="https://ebstudio.info/manual/EBStudio2/EBStudio2.html"
+target="_blank">EBStudio2</a> を使ってEPWING辞書に変換してみた。現在21万以上の語が登録されている。</p>
 
 <p>上記リンク先 &quot;The JMDict Project&quot; の &quot;the
 current version (Unicode UTF8) (Warning! This is a big file.)&quot;
@@ -26,12 +27,14 @@ sd の処理は高速なので問題なし。</p>
 
 <p>&quot;JMdict&quot; を GNU sort を使って かな で事前にソートする<a href="SortJMdict.bat.txt" target="_blank">バッチファイル</a>も書いてみた。sort
 コマンドは Cygwin か MSYS2 をインストールして利用する必要があるが、GNU
-ではないが <a href="https://frippery.org/busybox/" target="_blank">BusyBox for Windows</a> の sort でも動作したので Cygwin
-や MSYS2 をインストールしていなければそれが最も簡単。</p>
+ではないが <a href="https://frippery.org/busybox/" target="_blank">BusyBox for Windows</a> の sort でも動作したので
+Cygwin や MSYS2
+をインストールしていなければそれが最も簡単。</p>
 
 <p>EBStudio2 はライセンスを購入してあるので全部の種類のインデックスを作成できるが、後方一致かなインデックスは全部の語がマッチせず使いものにならない。何か仕様のつもりかも知れないがバグと言っていいだろう。</p>
 
-<p>同じ作者の定番ソフト <a href="https://ebstudio.info/manual/EBWin4/EBWin4.html" target="_blank">EBWin4</a> で動作確認したが非ASCIIの欧文文字が小さくなってしまうことがあった。旧版
+<p>同じ作者の定番ソフト <a href="https://ebstudio.info/manual/EBWin4/EBWin4.html"
+target="_blank">EBWin4</a> で動作確認したが非ASCIIの欧文文字が小さくなってしまうことがあった。旧版
 <a href="https://ebstudio.info/home/EBPocket.html" target="_blank">EBWin</a> の方がまともに表示される。新版はバグっぽい動作をしたりクラッシュしたりと不安定だ。</p>
 
 <p>この作者のソフトはドキュメントも不完全で
