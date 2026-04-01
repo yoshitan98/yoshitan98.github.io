@@ -1,0 +1,37 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>ハードディスク上のBDAVフォルダーをPCで再生する</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<p><font size="4"><strong>ハードディスク上のBDAVフォルダーをPCで再生する</strong></font>　<font size="2">2026年4月1日更新</font></p>
+
+<p>　</p>
+
+<p>10年前にパナソニックのレコーダーで録画しておいたBD-Rが劣化していて新品のレコーダーでも番組表示ができなくなっていた。BD-Rはノーブランドの安物を使ったわけではないのが・・・。</p>
+
+<p>BDドライブ・メディアの命運が尽きようとしていることもあり、DRMを解除できる
+DVDFab Passkey を持っているので全部ハードディスクにコピーしておくことにした。</p>
+
+<p>有償・無償問わずハードディスク上のBDAV対応のプレイヤーソフトがあるかどうかわからないので<a href="PlayBDAV.bat.txt.zip" target="_blank">バッチファイル</a>で対応してしまうことにした。ダブルクリックで起動できる。フォルダー選択ダイアログボックスが出るのでBDAVフォルダーまたはその上位フォルダーを選択すれば番組リストが表示されるので番号を入力すると*.m2tsに関連付けしてあるPCのプレイヤーでそれが再生される（私はMPC-BEを使用している）。フォルダー中に複数のBDAVフォルダーが存在する時には最初に見つかったinfo.bdavファイルの番組リストが表示される。</p>
+
+<p>レコーダー上でカット編集した動画がどう表示されるかはわからない。カット部分が静止画になったりするかもしれないが、レコーダーによって結果はち違う様子。</p>
+
+<p>バッチファイル中で使用するコマンドは <a href="https://github.com/kurema/bdavinfo" target="_blank">bdavinfo.exe</a>
+と <a href="https://frippery.org/busybox/" target="_blank">BusyBox
+for Windows</a> の busybox.exe と <a href="https://www.vector.co.jp/soft/win95/util/se295331.html"
+target="_blank">nkf..exe</a> で、いずれもパスを通しておいて下さい。</p>
+
+<p>※蛇足ながら zip 中のファイルは *.bat.txt を *.bat
+とリネームして下さい。<br>
+</p>
+
+<p>　</p>
+
+<p><a href="../">戻る</a></p>
+</body>
+</html>
