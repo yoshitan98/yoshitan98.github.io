@@ -1,0 +1,52 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>OCRで作成されたPDFから透明テキストの抽出・可視化</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<p><font size="4"><strong>OCRで作成されたPDFから透明テキストの抽出・可視化</strong></font>　<font size="2">2026年5月6日更新</font></p>
+
+<p>　</p>
+
+<p>PDFの加工はPythonでライブラリーを利用して行うことが定番のようだがWindows用CUIプログラムを使った<a href="batchfiles.zip" target="_blank">バッチファイル</a>を作ってみた。使用するプログラムは
+<a href="https://github.com/qpdf/qpdf" target="_blank">qpdf</a>
+と <a href="https://github.com/chmln/sd" target="_blank">sd</a>
+と <a href="https://github.com/coherentgraphics/cpdf-binaries" target="_blank">CPDF</a> の３つ。</p>
+
+<p>PDFの抽出と書いたが やっていることは透明テキスト付きPDFから画像を削除して透明テキストを残すこと。</p>
+
+<ol>
+    <li>qpdf --qdf --object-streams=disable を使ってPDFをテキストエディターで編集可能なQDF形式に変換。</li>
+    <li>sd でPDF中の &quot;/XObject&quot; 等を削除。</li>
+    <li>その状態ではPDFとしては不正な状態なので
+        cpdf -squeeze を使ってファイルを圧縮すると同時に修復を行うという結構いい加減な方法で透明テキストPDFを作成。</li>
+</ol>
+
+<p>OCRソフトやPDFリーダーによっては作成したPDFを開くと警告が出るが使用には問題なし。PDFから各種ツールを使って画像を抽出して自分の好きなように圧縮して画像のみのPDFを作成し、cpdf
+-combine-pages を使って透明テキストを重ねてPDFを作り直すこともできる。</p>
+
+<p>それを可視化するバッチファイルがやっていることは・・・</p>
+
+<ol>
+    <li>qpdf --qdf --object-streams=disable を使ってPDFをテキストエディターで編集可能なQDF形式に変換。</li>
+    <li>sd で可視化されるような部分を書き換え。</li>
+    <li>cpdf -squeeze を使ってファイルを圧縮すると同時にPDF化。</li>
+</ol>
+
+<p>OCRソフトによって不可視化の方法は違っているので
+2. はいくつかに対応させ、手元にあるOCRソフトいくつかで動作確認した。可視化できないものがあれば
+どうすればよいか調べて書き換えが必要。</p>
+
+<p>可視化させた透明テキストPDFは、OCRの精度が高く、小説等文章中心で、表示も気にならなければそのまま保存して極小のファイルのコレクションとできるかも。PDFリーダーは意外と優秀で行をまたいで検索もできるし、SumatraPDFではページをまたいでの検索もできる（ただしそれはヘッダー・フッター・ノンブルを取り除いている場合）。</p>
+
+<p>※qpdf.exe と sd.exe と cpdf.exe にはパスを通すかバッチファイルをフルパスに書き換えて下さい。</p>
+
+<p>　</p>
+
+<p><a href="../">戻る</a></p>
+</body>
+</html>
