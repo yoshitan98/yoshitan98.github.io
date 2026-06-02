@@ -1,0 +1,68 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>テキスト中心の本のスキャンからjbig2で小さいPDFを作成する</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<p><font size="4"><strong>テキスト中心の本のスキャンからjbig2で小さいPDFを作成する</strong></font>　<font size="2">2026年6月2日更新</font></p>
+
+<p>　</p>
+
+<p>スキャナーで作成したPDFや電子書籍のスクリーンショットで作成した画像から小さいPDFを作成をする。ページ中のテキスト等はjbig2形式でモノクロに圧縮し、写真等はグレイスケールjpeg形式でPDFの元の位置にスタンプとして貼り付ける方針。</p>
+
+<p>使用するソフトは <a href="https://sourceforge.net/projects/jbig2enc/" target="_blank">jbig2enc</a>、<a href="https://imagemagick.org/download/" target="_blank">ImageMagick</a>、<a href="https://github.com/coherentgraphics/cpdf-binaries">CPDF</a>、<a href="https://frippery.org/busybox/" target="_blank">BusyBox for
+Windows</a>、Python 等。Pythonには pip install で opencv-python
+と img2pdf パッケージをインストールする。画像のPDF化は
+img2pdf.py の替わりに CPDF でもできるが再エンコードしているようなので使わないこととした。</p>
+
+<p>スクリーンショットの自動化方法については書かないので必要であれば何らかの方法でご自分でご用意下さい。</p>
+
+<p>(1) スキャンでPDFが作成されるのであればその中からまず個々の画像ファイルを抽出する。<a href="https://github.com/oschwartz10612/poppler-windows"
+target="_blank">Poppler</a> の pdfimages.exe コマンドを使ったり、私のスキャナーのPDFは
+<a href="https://www.vector.co.jp/soft/win95/writing/se377893.html"
+target="_blank">画像梱包</a> でも抽出できた。</p>
+
+<p>(2) 必要により何らかの方法で画像のサイズを小さくしてしてファイルサイズを小さくする。透明テキストを付けるのであれば、たとえば
+NDLOCR-Lite は電子書籍ののスクリーンショット程度の解像度の画像でもOCRをかけられる。ちなみに
+NDLOCR-Lite は非可逆圧縮にしてファイルサイズを落としても意味がないので可逆圧縮か無圧縮にする。</p>
+
+<p>(3) 各ページの画像ファイルを何らかの方法で
+p0000.*, p0001.*, p0002.* ・・・ という連番にして新規フォルダーに入れる。私は
+IrfanView を常用しているので その「一括変換/名前の変更」を使った。</p>
+
+<p>(4) 透明テキストを結合するのであれば<a href="../ocrtextlayer/" target="_blank">「OCRで作成されたPDFから「透明テキストの抽出・可視化」</a>
+で透明テキストPDFを作成しておく。NDLOCR-Lite
+のようにページごとにPDFが作成されるのであれば何かの方法で無劣化結合してから透明テキスト作成バッチファイルを実行する。CPDF
+コマンドを使用するのであれば、<br>
+<br>
+cpdf.exe -merge -idir 対象PDFフォルダー -o 結合後.pdf<br>
+<br>
+が使える。</p>
+
+<p>(5) (3) をカレントフォルダーにして <a href="files.zip" target="_blank">make_pdf.sh とget_img_pos.py</a>
+を置き、以下のコマンドを実行する。その前に
+make_pdf.sh ファイル中の *.exe や *.py のパスを編集し、magick.exe
+の引数を変更して好みの画質にする。パスの区切り文字は&quot;\&quot;ではなく&quot;/&quot;を使う。get_img_pos.py
+の作成は簡単ではなかったので Gemini に作ってもらった。<br>
+<br>
+busybox ash -c ./make_pdf.sh</p>
+
+<p>(6) output.pdf が作成される。別途透明テキストを作成していた場合
+次のコマンドで結合できる。<br>
+<br>
+cpdf -combine-pages output.pdf 透明テキスト.pdf -o output2.pdf<br>
+<br>
+さらに cpdf -squeeze 入力.pdf -o 出力.pdf を使うと更にサイズが小さくなるかもしれない。<br>
+<br>
+ちなみに NDLOCR-Lite で作成したPDFはベータ版だということもあってか透明テキストの文字の位置がかなりずれるが検索はできる。<br>
+</p>
+
+<p>　</p>
+
+<p><a href="../">戻る</a></p>
+</body>
+</html>
