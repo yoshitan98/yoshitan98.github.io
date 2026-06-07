@@ -8,11 +8,11 @@
 
 <body bgcolor="#FFFFFF">
 
-<p><font size="4"><strong>OCRで作成されたPDFから透明テキストの抽出・可視化</strong></font>　<font size="2">2026年5月6日更新</font></p>
+<p><font size="4"><strong>OCRで作成されたPDFから透明テキストを抽出・可視化</strong></font>　<font size="2">2026年6月7日更新</font></p>
 
 <p>　</p>
 
-<p>PDFの加工はPythonでライブラリーを利用して行うことが定番のようだがWindows用CUIプログラムを使った<a href="batchfiles.zip" target="_blank">バッチファイル</a>を作ってみた。使用するプログラムは
+<p>PDFの加工はPythonでライブラリーを利用して行うことが定番のようだがWindows用既成CUIプログラムを使った<a href="batchfiles.zip" target="_blank">バッチファイル</a>を作ってみた。使用するプログラムは
 <a href="https://github.com/qpdf/qpdf" target="_blank">qpdf</a>
 と <a href="https://github.com/chmln/sd" target="_blank">sd</a>
 と <a href="https://github.com/coherentgraphics/cpdf-binaries" target="_blank">CPDF</a> の３つ。</p>
@@ -21,27 +21,32 @@
 
 <ol>
     <li>qpdf --qdf --object-streams=disable を使ってPDFをテキストエディターで編集可能なQDF形式に変換。</li>
-    <li>sd でPDF中の &quot;/XObject&quot; 等を削除。</li>
+    <li>sd でQDF中の &quot;/XObject&quot; 等を削除。</li>
     <li>その状態ではPDFとしては不正な状態なので
-        cpdf -squeeze を使ってファイルを圧縮すると同時に修復を行うという結構いい加減な方法で透明テキストPDFを作成。</li>
+        cpdf -squeeze を使ってファイルを修復・圧縮を行うという簡便な方法で透明テキストPDFを作成。フォントが埋め込まれていればそのまま残る。</li>
 </ol>
 
-<p>OCRソフトやPDFリーダーによっては作成したPDFを開くと警告が出るが使用には問題なし。PDFから各種ツールを使って画像を抽出して自分の好きなように圧縮して画像のみのPDFを作成し、cpdf
--combine-pages を使って透明テキストを重ねてPDFを作り直すこともできる。</p>
+<p>何らかのツールを使ってPDFから画像を抽出して自分の好きなように圧縮して画像のみのPDFを作成し、<br>
+cpdf -combine-pages 画像.pdf 透明テキスト.pdf -o 出力.pdf
+<br>
+として透明テキストを重ねてPDFを作り直すことができる。</p>
 
-<p>それを可視化するバッチファイルがやっていることは・・・</p>
+<p>　</p>
+
+<p>可視化するバッチファイルがやっていることは・・・</p>
 
 <ol>
     <li>qpdf --qdf --object-streams=disable を使ってPDFをテキストエディターで編集可能なQDF形式に変換。</li>
-    <li>sd で可視化されるような部分を書き換え。</li>
-    <li>cpdf -squeeze を使ってファイルを圧縮すると同時にPDF化。</li>
+    <li>sd でQDF中の不可視にしている部分を書き換え。</li>
+    <li>cpdf -squeeze を使ってファイルを修復・圧縮してPDF化。</li>
 </ol>
 
-<p>OCRソフトによって不可視化の方法は違っているので
+<p>OCRソフトによって不可視の方法は違っているので、
 2. はいくつかに対応させ、手元にあるOCRソフトいくつかで動作確認した。可視化できないものがあれば
-どうすればよいか調べて書き換えが必要。</p>
+どうすればよいか調べてバッチファイルの書き換えが必要。</p>
 
-<p>可視化させた透明テキストPDFは、OCRの精度が高く、小説等文章中心で、表示も気にならなければそのまま保存して極小のファイルのコレクションとできるかも。PDFリーダーは意外と優秀で行をまたいで検索もできるし、SumatraPDFではページをまたいでの検索もできる（ただしそれはヘッダー・フッター・ノンブルを取り除いている場合）。</p>
+<p>可視化した透明テキストPDFは、OCRの精度が高く、小説等文章中心で、表示も気にならなければ、極小の書籍ファイルコレクションとして保存できるかも。PDFリーダーは意外と優秀で行をまたいで検索もできるし、SumatraPDF
+ではページをまたいでの検索もできる（ただしヘッダー・フッター・ノンブルは取り除く必要あり）。</p>
 
 <p>※qpdf.exe と sd.exe と cpdf.exe にはパスを通すかバッチファイルをフルパスに書き換えて下さい。</p>
 
