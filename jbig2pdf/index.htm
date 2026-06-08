@@ -57,6 +57,12 @@ cpdf -combine-pages output.pdf 透明テキスト.pdf -o output2.pdf<br>
 その後 cpdf -squeeze output2.pdf -o output3.pdf を使うとサイズが更に小さくなるかもしれない。<br>
 </p>
 
+<p><font color="#FF0000">※ 透明テキストとの結合について手順・スクリプトの再考が必要だとわかりました。<br>
+jbig2enc は画像のdpiでPDFを作るようなので、スクリーンショットのように寸法とdpiが揃っていれば
+たとえば </font><a href="https://github.com/ndl-lab/ndlocr-lite"><font color="#FF0000">NDOCR-Lite</font></a><font color="#FF0000"> v1.2.2
+(pre-release) でそれと同じdpiを指定してPDFをつくれば透明テキストとの結合も問題ありませんが、他のOCRやdpiが揃っていない場合を含め
+どのように修正すべきか考えます。</font></p>
+
 <p>　</p>
 
 <p><a href="../">戻る</a></p>
