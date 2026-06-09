@@ -1,16 +1,14 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type"
-content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
 <title>Delphi 6をWindows 11で使う</title>
 </head>
 
 <body bgcolor="#FFFFFF">
 
-<p><font size="4"><strong>Delphi 6をWindows 11で使う</strong></font>　<font
-size="2">2025年12月16日更新</font></p>
+<p><font size="4"><strong>Delphi 6をWindows 11で使う</strong></font>　<font size="2">2025年12月16日更新</font></p>
 
 <p>　</p>
 
@@ -21,12 +19,10 @@ XP（16ビット）を仮想環境にした中に Delphi 6
 Professional がインストールしてあるのだが、そのファイルとレジストリーとをコピーして使えるかどうか試してみた。今は
 Free Pascal/Lazurus をメインに使っているのでDelphi 6が必要ということでもないのだが。</p>
 
-<p>生のWindowsでなくてもよければ <a
-href="https://freesoft-100.com/review/sandboxie.html"
+<p>生のWindowsでなくてもよければ <a href="https://freesoft-100.com/review/sandboxie.html"
 target="_blank">Sandboxie</a> にインストールして使うか（パフォーマンスの違いはわからないほど小さい）、またはその後サンドボックスフォルダーからコピーをするという方法でもいいでしょう。</p>
 
-<p>CD-ROMからインストールしたらアップデートしておく方がいいがアップデート用ファイルはインターネットアーカイブにも残っていないので私が保存しておいたファイルを勝手に<a
-href="https://yoshitan.stars.ne.jp/delphi6win11/Delphi6Updates.zip"
+<p>CD-ROMからインストールしたらアップデートしておく方がいいがアップデート用ファイルはインターネットアーカイブにも残っていないので私が保存しておいたファイルを勝手に<a href="https://yoshitan.stars.ne.jp/delphi6win11/Delphi6Updates.zip"
 target="_blank">転載</a>した。説明をよく読んで必要なファイルと適用する順番をまちがえないようにして下さい。</p>
 
 <p>　</p>
@@ -76,8 +72,7 @@ Files (x86)\Borland&quot; ということにして書く。</p>
         がコピーしたファイルを識別して Windows 11
         の &quot;C:\Program Files (x86)\Borland&quot; の中に
         &quot;SysWOW64&quot; フォルダーを作成してそこにコピーした。CD-ROMの
-        \install\system32 の<a href="system32.txt"
-        target="_blank">ファイルリスト</a>が参考になる。ただしアップデートで追加された
+        \install\system32 の<a href="system32.txt" target="_blank">ファイルリスト</a>が参考になる。ただしアップデートで追加された
         soaprtl60.bpl と soaprtl60.map はリストに入っていない。</li>
     <li>Windows XP でレジストリー HKEY_LOCAL_MACHINE\SOFTWARE\Borland
         と HKEY_CURRENT_USER\Software\Borland とをregeditでregファイルにエクスポートする（Sandboxieの場合はC:\Windows\SysWOW64\regedit.exeを右クリックで「サンドボックス化して実行」してエクスポート）。</li>
@@ -109,11 +104,9 @@ Files (x86)\Borland&quot; ということにして書く。</p>
 
 <p>上記のようにインストールした方でもCD-ROMから普通にインストールしても構わないという方でも使用許諾コードについては知っておく方がよいことがある。</p>
 
-<p>公式の<a
-href="https://docwiki.embarcadero.com/Support/ja/Delphi_6の使用許諾FAQ"
+<p>公式の<a href="https://docwiki.embarcadero.com/Support/ja/Delphi_6の使用許諾FAQ"
 target="_blank">「使用許諾FAQ」</a>というページを見ると現在ネットで使用者許諾コードは取得できないが「使用許諾コード取得代行を依頼」という方法は用意しているとのこと。しかし動作保証対象外のWindows
-10/11では<a
-href="https://docwiki.embarcadero.com/Support/ja/Delphi_6で使用許諾が完了したのに、製品を起動すると使用許諾ウィザードが表示されます"
+10/11では<a href="https://docwiki.embarcadero.com/Support/ja/Delphi_6で使用許諾が完了したのに、製品を起動すると使用許諾ウィザードが表示されます"
 target="_blank">「使用許諾が完了したのに、製品を起動すると使用許諾ウィザードが表示されます」</a>という問題が発生する。しかも「登録回数の上限」というものもあるので「使用許諾コード取得代行を依頼」も回数が制限されてしまうだろう。そのため使用許諾コードは「後で取得する」で使用を続ける。</p>
 
 <p>ネット上にWindows 10で「後で取得する」にしても効かなくなることがあるように書かれていたが、その時にはレジストリー
@@ -124,10 +117,8 @@ HKEY_CURRENT_USER\Software\Borland\Delphi\6.0 の LM を削除すればいいよ
 <p>【IV】 おまけ</p>
 
 <p>かつて商用利用不可という条件で Delphi 6
-Personal というソフトが<a
-href="https://web.archive.org/web/20011211224056/http://www.borland.co.jp/delphi/personal/"
-target="_blank">公式ページ</a>（インターネットアーカイブ）や雑誌付録でフリー配布されていた。インストールするには使用者登録が必要だが今では登録できないのでインストーラーを持っていてもインストールはできない。しかし今でもインストール無しでコマンドラインコンパイラーだけは使用できてしまうことがわかった。インストーラーはインターネットアーカイブにも残っていないので私が持っているものを勝手に<a
-href="https://yoshitan.stars.ne.jp/delphi6win11/BorlandDelphiPersonalEditionJP.exe"
+Personal というソフトが<a href="https://web.archive.org/web/20011211224056/http://www.borland.co.jp/delphi/personal/"
+target="_blank">公式ページ</a>（インターネットアーカイブ）や雑誌付録でフリー配布されていた。インストールするには使用者登録が必要だが今では登録できないのでインストーラーを持っていてもインストールはできない。しかし今でもインストール無しでコマンドラインコンパイラーだけは使用できてしまうことがわかった。インストーラーはインターネットアーカイブにも残っていないので私が持っているものを勝手に<a href="https://yoshitan.stars.ne.jp/delphi6win11/BorlandDelphiPersonalEditionJP.exe"
 target="_blank">転載</a>した。ファイルサイズは公式ページ記載と一致しているがMD5等は書かれていないので怪しいと思う方は仮想環境やサンドボックス上でテストして下さい。</p>
 
 <ol type="1" start="1">
@@ -142,6 +133,6 @@ target="_blank">転載</a>した。ファイルサイズは公式ページ記載
 
 <p>　</p>
 
-<p><a href="../">＜戻る＞</a></p>
+<p><a href="../">＜ホーム＞</a></p>
 </body>
 </html>
