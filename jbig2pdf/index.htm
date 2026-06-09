@@ -8,41 +8,55 @@
 
 <body bgcolor="#FFFFFF">
 
-<p><font size="4"><strong>テキスト中心の本のスキャンからjbig2で小さいPDFを作成する</strong></font>　<font size="2">2026年6月7日更新</font></p>
+<p><font size="4"><strong>テキスト中心の本のスキャンからjbig2で小さいPDFを作成する</strong></font>　<font size="2">2026年6月8日更新</font></p>
 
 <p>　</p>
 
 <p>スキャナーで作成したPDFや電子書籍のスクリーンショットで作成した画像から小さいPDFを作成をする。ページ中のテキスト等はjbig2形式でモノクロに圧縮し、写真等はグレイスケールjpeg形式でPDFの元の位置にスタンプとして貼り付ける方針で。</p>
 
-<p>使用するソフトは <a href="https://sourceforge.net/projects/jbig2enc/" target="_blank">jbig2enc</a>、<a href="https://imagemagick.org/download/" target="_blank">ImageMagick</a>、<a href="https://github.com/coherentgraphics/cpdf-binaries">CPDF</a>、<a href="https://frippery.org/busybox/" target="_blank">BusyBox for
+<p>使用するソフトは <a href="https://sourceforge.net/projects/jbig2enc/" target="_blank">jbig2enc</a>
+(別のサイトにもあるが正しく動作しない)、<a href="https://imagemagick.org/download/" target="_blank">ImageMagick</a>、<a href="https://github.com/coherentgraphics/cpdf-binaries">CPDF</a>、<a href="https://frippery.org/busybox/" target="_blank">BusyBox for
 Windows</a>、Python 等。Pythonには pip install で opencv-python
 と img2pdf パッケージをインストールする。画像のPDF化は
-img2pdf.py の替わりに CPDF でもできるが再エンコードしているようなので使わないこととした。</p>
+img2pdf.py の替わりに CPDF でもできるが作成されるPDFが常に72dpiになってしまうので使えない。</p>
 
 <p>スクリーンショットの自動化方法については書かないので必要であれば何らかの方法でご自分でご用意下さい。</p>
 
-<p>(1) スキャンでPDFが作成されるのであればその中からまず個々の画像ファイルを抽出する。<a href="https://github.com/oschwartz10612/poppler-windows" target="_blank">Poppler</a> の pdfimages.exe コマンドを使ったり、私のスキャナーのPDFは
-<a href="https://www.vector.co.jp/soft/win95/writing/se377893.html" target="_blank">画像梱包</a> でも抽出できた。</p>
+<p>(1) スキャンでPDFが作成されるのであればその中からまず個々の画像ファイルを抽出する。<a href="https://github.com/oschwartz10612/poppler-windows"
+target="_blank">Poppler</a> の pdfimages.exe コマンドを使ったり、私のスキャナーのPDFは
+<a href="https://www.vector.co.jp/soft/win95/writing/se377893.html"
+target="_blank">画像梱包</a> でも抽出できた。</p>
 
-<p>(2) 必要により何らかのツールで画像のサイズを小さくする。透明テキストを付けるのであれば、OCRの多くは画像形式や画質を変更してしまうので不可逆圧縮にしてファイルファイズを小さくしておく必要はなく、可逆圧縮か無圧縮にしておけばよい。</p>
+<p>(2) 必要により何らかのツールで画像のサイズ（寸法）を小さくする。変換後の画像形式は
+png がよい。サイズを小さくすれば作成されるPDFは小さくなるが、透明テキストを付けるのであれば、サイズを小さくし過ぎるとOCRの認識精度は下がってしまう。</p>
 
-<p>(3) 各ページの画像ファイルを何らかの方法で
-p0000.*, p0001.*, p0002.* ・・・ という連番にして新規フォルダーに入れる。私は
-IrfanView を常用しているので その「一括変換/名前の変更」を使った。</p>
+<p>(3) 作業フォルダーを作成して中に&quot;pages&quot;というフォルダーを作成してその中にページ順にソートできるファイル名で画像ファイルを入れる。コマンドプロンプトの
+dir コマンドのソート順が使われる。たとえば&quot;8.png&quot;、&quot;9.png&quot;、&quot;10.png&quot;というファイルがある時Windowsのエクスプローラーはその順でソートするが、dir
+では&quot;10.png&quot;→&quot;8.png&quot;→&quot;9.png&quot;となることに注意。&quot;08.png&quot;、&quot;09.png&quot;、&quot;10.png&quot;であれば問題ない。</p>
 
 <p>(4) 透明テキストを結合するのであれば<a href="../ocrtextlayer/" target="_blank">「OCRで作成されたPDFから「透明テキストを抽出・可視化」</a>
-で透明テキストPDFを作成しておく。OCRがページごとにPDFを作成するのであれば何かのツールで無劣化結合してから透明テキスト作成バッチファイルを実行する。CPDF
+で透明テキストPDFを作成しておく。OCRで作成するPDFのdpi（解像度）と後述
+&quot;make_pdf.sh&quot; 中に設定するdpiとは同一にする必要がある。OCRが作成するPDFのdpiは
+Poppler の　pdfimages.exe コマンドで<br>
+<br>
+pdfimages -list PDFファイル<br>
+<br>
+と実行すると x-ppi・y-ppi として表示される。<br>
+OCRがページごとにPDFを作成するのであれば何かのツールで無劣化結合してから透明テキスト作成バッチファイルを実行する。CPDF
 コマンドを使用するのであれば、<br>
 <br>
 cpdf -merge -idir 対象PDFフォルダー -o 結合後.pdf<br>
 <br>
-が使える。</p>
+が使える。<br>
+ちなみに <a href="https://github.com/ndl-lab/ndlocr-lite" target="_blank">NDLOCR-Lite</a> ではv1.2.2 (pre-release) 以降からdpiが指定できるようになった。</p>
 
-<p>(5) (3) をカレントフォルダーにして <a href="files.zip" target="_blank">make_pdf.sh とget_img_pos.py</a>
-を置き、以下のコマンドを実行する。その前に必要により
-make_pdf.sh スクリプト中の *.exe や *.py のパスを編集する。sh中のパスの区切り文字は&quot;\&quot;ではなく&quot;/&quot;を使う（カレントフォルダにパスは通っていないのでその場合には
-./*.exe とする）。また、magick.exe の引数を変更して写真等を好みの画質にする。get_img_pos.py
-の作成は簡単ではなかったので Gemini に作ってもらった。<br>
+<p>(5) (3) の作業フォルダーをカレントフォルダーにして
+<a href="files.zip" target="_blank">make_pdf.sh とget_img_pos.py</a>
+を置き、以下のコマンドを実行する。その前に
+make_pdf.sh スクリプト中の *.exe や *.py のパスと冒頭の
+dpi 変数の値をテキストエディターで書き換える。sh中のパスの区切り文字は&quot;\&quot;ではなく&quot;/&quot;を使う（カレントフォルダーにパスは通っていないのでその場合には
+./*.exe とする）。また、magick.exe の引数を変更して写真等を好みの画質にする。（get_img_pos.py
+の作成は簡単ではなかったので Gemini に作ってもらった。）<br>
 <br>
 busybox ash -c ./make_pdf.sh<br>
 （ちなみに busybox の ash は bash の一部構文が使える）</p>
@@ -53,13 +67,13 @@ busybox ash -c ./make_pdf.sh<br>
 cpdf -combine-pages output.pdf 透明テキスト.pdf -o output2.pdf<br>
 <br>
 その後 cpdf -squeeze output2.pdf -o output3.pdf を使うとサイズが更に小さくなるかもしれない。<br>
-</p>
+<font color="#000000"></font></p>
 
-<p><font color="#FF0000">※ 透明テキストとの結合について手順・スクリプトの再考が必要だとわかりました。<br>
-jbig2enc は画像のdpiでPDFを作るようなので、スクリーンショットのように寸法とdpiが揃っていれば
-たとえば </font><a href="https://github.com/ndl-lab/ndlocr-lite"><font color="#FF0000">NDOCR-Lite</font></a><font color="#FF0000"> v1.2.2
-(pre-release) でそれと同じdpiを指定してPDFをつくれば透明テキストとの結合も問題ありませんが、他のOCRやdpiが揃っていない場合を含め
-どのように修正すべきか考えます。</font></p>
+<p>※ スキャナーが作成したPDFはページごとに画像形式とdpiが異なることがある。<br>
+<br>
+pdfimages -list PDFファイル<br>
+<br>
+で確認できる。本来dpiごとに処理を分けて作るべきだが上記では全ページ同じdpiで処理している。そのためPDFリーダーで100%表示にした時のページの大きさが変わってしまう。画面上で普通に読むだけであればそれでも問題はない。</p>
 
 <p>　</p>
 

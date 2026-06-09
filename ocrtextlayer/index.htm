@@ -8,7 +8,7 @@
 
 <body bgcolor="#FFFFFF">
 
-<p><font size="4"><strong>OCRで作成されたPDFから透明テキストを抽出・可視化</strong></font>　<font size="2">2026年6月7日更新</font></p>
+<p><font size="4"><strong>OCRで作成されたPDFから透明テキストを抽出・可視化</strong></font>　<font size="2">2026年6月9日更新</font></p>
 
 <p>　</p>
 
@@ -31,8 +31,6 @@ cpdf -combine-pages 画像.pdf 透明テキスト.pdf -o 出力.pdf
 <br>
 として透明テキストを重ねてPDFを作り直すことができる。</p>
 
-<p>　</p>
-
 <p>可視化するバッチファイルがやっていることは・・・</p>
 
 <ol>
@@ -47,6 +45,9 @@ cpdf -combine-pages 画像.pdf 透明テキスト.pdf -o 出力.pdf
 
 <p>可視化した透明テキストPDFは、OCRの精度が高く、小説等文章中心で、表示も気にならなければ、極小の書籍ファイルコレクションとして保存できるかも。PDFリーダーは意外と優秀で行をまたいで検索もできるし、SumatraPDF
 ではページをまたいでの検索もできる（ただしヘッダー・フッター・ノンブルは取り除く必要あり）。</p>
+
+<p>バッチファイルの引数はいずれも<br>
+バッチファイル 入力ファイル 出力ファイル</p>
 
 <p>※qpdf.exe と sd.exe と cpdf.exe にはパスを通すかバッチファイルをフルパスに書き換えて下さい。</p>
 
