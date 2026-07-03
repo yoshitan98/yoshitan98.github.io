@@ -1,0 +1,69 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>電子ピアノのFDDをFDDエミュレーターGotekに換装</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<p><font size="4"><strong>電子ピアノのFDDをFDDエミュレーターGotekに換装</strong></font>　<font size="2">2026年7月3日更新</font></p>
+
+<p>　</p>
+
+<p>2002年購入のYAMAHA CVP-205のフロッピーディスクドライブは既に使えなくなっているのでUSBメモリーを1000枚分のフロッピーディスクとしてボタンで切り替えて使用できるフロッピーディスクドライブ・エミュレーターのGotekに換装した。Gotekはファームウェアをサードパーティー製のFlashFloppyというものに書き換えるのがよいとされているが、購入した型番SFR1M44-U100で書き換えができなかったので元のファームウェアのまま使うことにした。</p>
+
+<p>USBメモリーの最初のアドレス0から1,572,864バイトごとにフロッピーディスク・イメージを書き込んで使用する。YAMAHA
+CVP-205は1.44MB 2HD MD-DOSフォーマットのディスクを使用するので最初のアドレスから1,474,560バイトを１枚目のディスクとして書き込み、２枚目はアドレス1,572,864から書き込みをするという具合。USBメモリーの読み書きはWindowsでは
+Cygwin または MSYS2 の dd コマンドを使用する。</p>
+
+<p>【読み込み】<br>
+dd if=[USBメモリのデバイス名] of=N.img bs=512 skip=[N *
+3072] count=2880<br>
+<br>
+【書き込み】<br>
+dd if=N.img of=[USBメモリのデバイス名] bs=512 seek=[N *
+3072] count=2880<br>
+<br>
+NはGotekで選択できるディスクの番号000〜999。<br>
+<br>
+N.img
+はディスクのローイメージファイルのファイル名（ファイル名は任意）。<br>
+<br>
+デバイス名は PowerShell で Get-Disk を実行して表示されるUSBメモリーの番号を見て<br>
+0→/dev/sda<br>
+1→/dev/sdb<br>
+2→/dev/sdc<br>
+・・・とする。<br>
+あるいは Cygwin または MSYS2 で cat /proc/partitions を実行してもわかる。<br>
+デバイス名をまちがえるとハードディスク等を破壊するかもしれないので十分注意して下さい。</p>
+
+<p>まず最低１枚分のローイメージファイルを用意する必要がある。何かツールで作るか、ピアノで000をフォーマットしてから<br>
+dd if=[USBメモリのデバイス名] of=000.img bs=512 skip=0
+count=2880<br>
+を実行してファイルに書き出してもよい。<br>
+そして<br>
+dd if=000.img of=[USBメモリのデバイス名] bs=512 seek=0
+count=2880<br>
+を実行すれば１枚目（000番）が書き込まれる。</p>
+
+<p>1枚目が書き込まれると、USBメモリーに割り当てられたドライブはWindowsのエクスプローラで見ると容量が1.44MBに変わっている。ここにファイルをコピーすれば即１枚目への書き込みとなる。あとは
+dd コマンドでそれを別のディスク番号に書き込みをすればよいので
+ある意味 FlashFloppy よりも使い勝手がよいと言える。</p>
+
+<p>dd コマンドは読み込み・書き込み位置を計算する必要があるがラッパーを作れば簡単に使えるようになる。たとえば
+<a href="https://gitlab.com/rreiner/usbfd-tools" target="_blank">usbfd-tools</a>
+というスクリプトが公開されている。私はディスク番号何番から何番へコピーするという指定をして
+dd を実行できる<a href="gotek-cp.zip" target="_blank">スクリプト</a>を作成しておいた（安全のためデバイス名も自動的に取得）。これでエクスプローラーで書き込んだ0番からのコピーも簡単にできる。</p>
+
+<p>Gotek公式サイトの<a href="https://www.gotekemulator.com/download.html"
+target="_blank">Downnloadページ</a>には &quot;3rd party
+formatting software&quot; としてUSBメモリーを操作するGUIツールが３つ置かれているが
+いずれもWindows 11では互換モードにしても動作しなかった。</p>
+
+<p>　</p>
+
+<p><a href="../">＜ホーム＞</a></p>
+</body>
+</html>
