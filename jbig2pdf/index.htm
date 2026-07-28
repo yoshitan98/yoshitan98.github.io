@@ -1,85 +1,90 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-2022-jp">
 <meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
-<title>テキスト中心の本のスキャンからjbig2で小さいPDFを作成する</title>
+<title>$B%F%-%9%HCf?4$NK\$N%9%-%c%s$+$i(Jjbig2$B$G>.$5$$(JPDF$B$r:n@.$9$k(J</title>
 </head>
 
 <body bgcolor="#FFFFFF">
 
-<p><font size="4"><strong>テキスト中心の本のスキャンからjbig2で小さいPDFを作成する</strong></font>　<font size="2">2026年7月3日更新</font></p>
+<p><font size="4"><strong>$B%F%-%9%HCf?4$NK\$N%9%-%c%s$+$i(Jjbig2$B$G>.$5$$(JPDF$B$r:n@.$9$k(J</strong></font>$B!!(J<font size="2">2026$BG/(J7$B7n(J28$BF|99?7(J</font></p>
 
-<p>　</p>
+<p>$B!!(J</p>
 
-<p>スキャナーで作成したPDFや電子書籍のスクリーンショットで作成した画像からコマンドラインプログラムで小さいPDFを作成をする。ページ中のテキスト等はjbig2形式でモノクロに圧縮し、写真等はjpeg形式でPDFの元の位置にスタンプとして貼り付ける方針で。</p>
+<p>$B%9%-%c%J!<$G:n@.$7$?(JPDF$B$dEE;R=q@R$N%9%/%j!<%s%7%g%C%H$G:n@.$7$?2hA|$+$i%3%^%s%I%i%$%s%W%m%0%i%`$G>.$5$$(JPDF$B$r:n@.$r$9$k!#%Z!<%8Cf$N%F%-%9%HEy$O(Jjbig2$B7A<0$G%b%N%/%m$K05=L$7!"<L??Ey$O(Jjpeg$B7A<0$G(JPDF$B$N85$N0LCV$K%9%?%s%W$H$7$FE=$jIU$1$kJ}?K$G!#(J</p>
 
-<p>PDFに透明テキストを埋め込む方法も書くがそれを作成するOCRは色々あるので
+<p>PDF$B$KF)L@%F%-%9%H$rKd$a9~$`J}K!$b=q$/$,$=$l$r:n@.$9$k(JOCR$B$O?'!9$"$k$N$G(J
 <a href="https://github.com/ndl-lab/ndlocr-lite" target="_blank">NDLOCR-Lite</a>
-を例として書く。</p>
+$B$rNc$H$7$F=q$/!#(J</p>
 
-<p>使用するソフトは <a href="https://sourceforge.net/projects/jbig2enc/" target="_blank">jbig2enc</a>
-(githubの本家のv.0.32は -S オプションに問題があるので左のリンクのv.0.29を使用)、<a href="https://imagemagick.org/download/" target="_blank">ImageMagick</a>、<a href="https://github.com/coherentgraphics/cpdf-binaries">CPDF</a>、<a href="https://frippery.org/busybox/" target="_blank">BusyBox for
-Windows</a>、Python 等。Pythonには pip install で opencv-python
-と img2pdf パッケージをインストールする。画像のPDF化は
-img2pdf.py の替わりに CPDF でもできるが作成されるPDFが常に72dpiになってしまうので使えない。</p>
+<p>$B;HMQ$9$k%=%U%H$O(J <a href="https://sourceforge.net/projects/jbig2enc/" target="_blank">jbig2enc</a>
+(github$B$NK\2H$N(Jv.0.32$B$O(J -S $B%*%W%7%g%s$KLdBj$,$"$k$N$G:8$N%j%s%/$N(Jv.0.29$B$r;HMQ(J)$B!"(J<a href="https://imagemagick.org/download/" target="_blank">ImageMagick</a>$B!"(J<a href="https://github.com/coherentgraphics/cpdf-binaries">CPDF</a>$B!"(J<a href="https://frippery.org/busybox/" target="_blank">BusyBox for
+Windows</a>$B!"(JPython $BEy!#(JPython$B$K$O(J pip install $B$G(J opencv-python
+$B$H(J img2pdf $B%Q%C%1!<%8$r%$%s%9%H!<%k$9$k!#2hA|$N(JPDF$B2=$O(J
+img2pdf.py $B$NBX$o$j$K(J CPDF $B$G$b$G$-$k$,:n@.$5$l$k(JPDF$B$,>o$K(J72dpi$B$K$J$C$F$7$^$&$N$G;H$($J$$!#(J</p>
 
-<p>スクリーンショットの自動化方法については書かないので必要であれば何らかの方法でご自分でご用意下さい。</p>
+<p>$B%9%/%j!<%s%7%g%C%H$N<+F02=J}K!$K$D$$$F$O=q$+$J$$$N$GI,MW$G$"$l$P2?$i$+$NJ}K!$G$4<+J,$G$4MQ0U2<$5$$!#(J</p>
 
-<p>(1) スキャンでPDFが作成されるのであればその中からまず個々の画像ファイルを抽出する。<a href="https://github.com/oschwartz10612/poppler-windows" target="_blank">Poppler</a> の pdfimages.exe コマンドを使ったり、私のスキャナーのPDFは
-<a href="https://www.vector.co.jp/soft/win95/writing/se377893.html" target="_blank">画像梱包</a> でも抽出できた。</p>
+<p>(1) $B%9%-%c%s$G(JPDF$B$,:n@.$5$l$k$N$G$"$l$P$=$NCf$+$i$^$:8D!9$N2hA|%U%!%$%k$rCj=P$9$k!#(J<a href="https://github.com/oschwartz10612/poppler-windows"
+target="_blank">Poppler</a> $B$N(J pdfimages.exe $B%3%^%s%I$r;H$C$?$j!";d$N%9%-%c%J!<$N(JPDF$B$O(J
+<a href="https://www.vector.co.jp/soft/win95/writing/se377893.html"
+target="_blank">$B2hA|:-Jq(J</a> $B$G$bCj=P$G$-$?!#(J</p>
 
-<p>(2) 希望により何らかのツールで画像のサイズ（ピクセル数）を小さくする。変換後の画像形式は
-png がよい。サイズを小さくすれば作成されるPDFは小さくなるが、透明テキストを付けるのであれば、サイズを小さくし過ぎるとOCRの認識精度は下がってしまう。</p>
+<p>(2) $B4uK>$K$h$j2?$i$+$N%D!<%k$G2hA|$N%5%$%:!J%T%/%;%k?t!K$r>.$5$/$9$k!#JQ498e$N2hA|7A<0$O(J
+png $B$,$h$$!#%5%$%:$r>.$5$/$9$l$P:n@.$5$l$k(JPDF$B$O>.$5$/$J$k$,!"F)L@%F%-%9%H$rIU$1$k$N$G$"$l$P!"%5%$%:$r>.$5$/$72a$.$k$H(JOCR$B$NG'<1@:EY$O2<$,$C$F$7$^$&!#(J</p>
 
-<p>(3) 作業フォルダーを作成して中に&quot;pages&quot;というフォルダーを作成してその中にページ順にソートできるファイル名で画像ファイルを入れる。コマンドプロンプトの
-dir コマンドのソート順が使われる。たとえば&quot;8.png&quot;、&quot;9.png&quot;、&quot;10.png&quot;というファイルがある時Windowsのエクスプローラーはその順でソートするが、dir
-では&quot;10.png&quot;→&quot;8.png&quot;→&quot;9.png&quot;となることに注意。&quot;08.png&quot;、&quot;09.png&quot;、&quot;10.png&quot;であれば問題ない。ツールで抽出した画像ファイルにはたいてい適切に連番が付いているのではないかと思う。</p>
+<p>(3) $B:n6H%U%)%k%@!<$r:n@.$7$FCf$K(J&quot;pages&quot;$B$H$$$&%U%)%k%@!<$r:n@.$7$F$=$NCf$K%Z!<%8=g$K%=!<%H$G$-$k%U%!%$%kL>$G2hA|%U%!%$%k$rF~$l$k!#%3%^%s%I%W%m%s%W%H$N(J
+dir $B%3%^%s%I$N%=!<%H=g$,;H$o$l$k!#$?$H$($P(J&quot;8.png&quot;$B!"(J&quot;9.png&quot;$B!"(J&quot;10.png&quot;$B$H$$$&%U%!%$%k$,$"$k;~(JWindows$B$N%(%/%9%W%m!<%i!<$O$=$N=g$G%=!<%H$9$k$,!"(Jdir
+$B$G$O(J&quot;10.png&quot;$B"*(J&quot;8.png&quot;$B"*(J&quot;9.png&quot;$B$H$J$k$3$H$KCm0U!#(J&quot;08.png&quot;$B!"(J&quot;09.png&quot;$B!"(J&quot;10.png&quot;$B$G$"$l$PLdBj$J$$!#%D!<%k$GCj=P$7$?2hA|%U%!%$%k$K$O$?$$$F$$E,@Z$KO"HV$,IU$$$F$$$k$N$G$O$J$$$+$H;W$&!#(J</p>
 
-<p>(4) (3) の作業フォルダーをカレントフォルダーにして
-<a href="files.zip" target="_blank">make_pdf.sh とget_img_pos.py</a>
-（後者の作成は簡単ではなかったので Gemini に作ってもらった）を置き、make_pdf.sh
-中の *.exe にパスが通っていなければテキストエディターでフルパスを書き足し、*.py
-のパスと最初の方にある dpi 変数の値を書き換える。<br>
-sh中のパスの区切り文字は&quot;\&quot;ではなく&quot;/&quot;を使う（shではカレントフォルダーにパスは通っていないのでその場合には
-./*.exe とする）。<br>
-また、magick.exe の引数を変更して写真等を好みの画質にする。
-&quot;-colorspace gray&quot; を削除すればグレイスケールではなくなるし
-&quot;-quality 85&quot; の数値はjpegの品質。<br>
+<p>(4) (3) $B$N:n6H%U%)%k%@!<$r%+%l%s%H%U%)%k%@!<$K$7$F(J
+<a href="files.zip" target="_blank">make_pdf.sh $B$H(Jget_img_pos.py</a>
+$B!J8e<T$N:n@.$O4JC1$G$O$J$+$C$?$N$G(J Gemini $B$K:n$C$F$b$i$C$?!K$rCV$-!"(Jmake_pdf.sh
+$BCf$N(J *.exe $B$K%Q%9$,DL$C$F$$$J$1$l$P%F%-%9%H%(%G%#%?!<$G%U%k%Q%9$r=q$-B-$7!"(J*.py
+$B$N%Q%9$H:G=i$NJ}$K$"$k(J dpi $BJQ?t$NCM$r=q$-49$($k!#(J<br>
+sh$BCf$N%Q%9$N6h@Z$jJ8;z$O(J&quot;\&quot;$B$G$O$J$/(J&quot;/&quot;$B$r;H$&!J(Jsh$B$G$O%+%l%s%H%U%)%k%@!<$K%Q%9$ODL$C$F$$$J$$$N$G$=$N>l9g$K$O(J
+./*.exe $B$H$9$k!K!#(J<br>
+$B$^$?!"(Jmagick.exe $B$N0z?t$rJQ99$7$F<L??Ey$r9%$_$N2h<A$K$9$k!#(J
+&quot;-colorspace gray&quot; $B$r:o=|$9$l$P%0%l%$%9%1!<%k$G$O$J$/$J$k$7(J
+&quot;-quality 85&quot; $B$N?tCM$O(Jjpeg$B$NIJ<A!#(J<br>
 <br>
-[パス\]busybox bash -c ./make_pdf.sh<br>
+[$B%Q%9(J\]busybox bash -c ./make_pdf.sh<br>
 <br>
-を実行すると&quot;output.pdf&quot; が作成される。</p>
+$B$r<B9T$9$k$H(J&quot;output.pdf&quot; $B$,:n@.$5$l$k!#(J</p>
 
-<p>(5) 透明テキストを付けるのであれば、NDLOCR-Lite
-で&quot;pages&quot;フォルダーを処理対象フォルダーとして、
-make_pdf.sh に書いたdpiを入力して出力ファイルを1つにまとめてPDFを作成する。その後
-<a href="../ocrtextlayer/" target="_blank">「OCRで作成されたPDFから「透明テキストを抽出・可視化」</a>
-を使って透明テキストPDFを作成する。</p>
+<p>(5) $BF)L@%F%-%9%H$rIU$1$k$N$G$"$l$P!"(JNDLOCR-Lite
+$B$G(J&quot;pages&quot;$B%U%)%k%@!<$r=hM}BP>]%U%)%k%@!<$H$7$F!"(J
+make_pdf.sh $B$K=q$$$?(Jdpi$B$rF~NO$7$F=PNO%U%!%$%k$r(J1$B$D$K$^$H$a$F(JPDF$B$r:n@.$9$k!#$=$N8e(J
+<a href="../ocrtextlayer/" target="_blank">$B!V(JOCR$B$G:n@.$5$l$?(JPDF$B$+$i!VF)L@%F%-%9%H$rCj=P!&2D;k2=!W(J</a>
+$B$r;H$C$FF)L@%F%-%9%H(JPDF$B$r:n@.$9$k!#(J</p>
 
-<p>(6) 透明テキストを作成した場合 次のコマンドで&quot;output.pdf&quot;と結合できる。<br>
+<p>(6) $BF)L@%F%-%9%H$r:n@.$7$?>l9g(J $B<!$N%3%^%s%I$G(J&quot;output.pdf&quot;$B$H7k9g$G$-$k!#(J<br>
 <br>
-[パス\]cpdf -combine-pages output.pdf 透明テキスト.pdf -o
+[$B%Q%9(J\]cpdf -combine-pages output.pdf $BF)L@%F%-%9%H(J.pdf -o
 output2.pdf</p>
 
-<p>(7) その後<br>
+<p>(7) $B$=$N8e(J<br>
 <br>
-[パス\]cpdf -squeeze output2.pdf -o output3.pdf<br>
+[$B%Q%9(J\]cpdf -squeeze output2.pdf -o output3.pdf<br>
 <br>
-を使うとファイルサイズが更に小さくなるかもしれない。</p>
+$B$r;H$&$H%U%!%$%k%5%$%:$,99$K>.$5$/$J$k$+$b$7$l$J$$!#(J</p>
 
-<p>※ dpiは何を指定しても画面上で見た時の画質は変わらない。ただしPDFリーダーでプロパティーとして表示される縦横の寸法や100%表示にした時の大きさが違ってくる。スキャナーが作成するPDFのプロパティーの寸法はスキャンした紙の寸法となる。スキャナーのPDFはページごとに画像形式とdpiが異なることがある。<br>
+<p>$B"((J dpi$B$O2?$r;XDj$7$F$b2hLL>e$G8+$?;~$N2h<A$OJQ$o$i$J$$!#$?$@$7(JPDF$B%j!<%@!<$G%W%m%Q%F%#!<$H$7$FI=<($5$l$k=D2#$N@#K!$d(J100%$BI=<($K$7$?;~$NBg$-$5$,0c$C$F$/$k!#%9%-%c%J!<$,:n@.$9$k(JPDF$B$N%W%m%Q%F%#!<$N@#K!$O%9%-%c%s$7$?;f$N@#K!$H$J$k!#%9%-%c%J!<$N(JPDF$B$O%Z!<%8$4$H$K2hA|7A<0$H(Jdpi$B$,0[$J$k$3$H$,$"$k!#(J<br>
 <br>
-[パス\]pdfimages -list PDFファイル<br>
+[$B%Q%9(J\]pdfimages -list PDF$B%U%!%$%k(J<br>
 <br>
-を実行するとdpiは x-ppi、y-ppi として表示される。<br>
-正しくPDFを変換するためにはそれに合わせてページ別にdpiを設定してPDFを変換してから結合すべきだが、上記スクリプトは
-そのような作り込みをしていない。<br>
+$B$r<B9T$9$k$H(Jdpi$B$O(J x-ppi$B!"(Jy-ppi $B$H$7$FI=<($5$l$k!#(J<br>
+$B@5$7$/(JPDF$B$rJQ49$9$k$?$a$K$O$=$l$K9g$o$;$F%Z!<%8JL$K(Jdpi$B$r@_Dj$7$F(JPDF$B$rJQ49$7$F$+$i7k9g$9$Y$-$@$,!">e5-%9%/%j%W%H$O(J
+$B$=$N$h$&$J:n$j9~$_$r$7$F$$$J$$!#(J<br>
 <br>
-なお、Windows画面のスクリーンショットはディスプレイのサイズに関係なく96dpiということになっている。</p>
+$B$J$*!"(JWindows$B2hLL$N%9%/%j!<%s%7%g%C%H$O%G%#%9%W%l%$$N%5%$%:$K4X78$J$/(J96dpi$B$H$$$&$3$H$K$J$C$F$$$k!#(J</p>
 
-<p>　</p>
+<p>(8) $B%9%-%c%J!<$G:n@.$7$?%U%!%$%k$rBP>]$K$7$?;~(Jjbig2$B$N%7%s%\%k%b!<%I$G$O5U$K%U%!%$%k%5%$%:$,Bg$-$/$J$C$F$7$^$&$3$H$,$"$k$N$GHs%7%s%\%k%b!<%I$r;HMQ$9$k(J
+<a href="files.zip" target="_blank">make_pdf2.sh</a> $B$b:n@.$7$?!#(J</p>
 
-<p><a href="../">＜ホーム＞</a></p>
+<p>$B!!(J</p>
+
+<p><a href="../">$B!c%[!<%`!d(J</a></p>
 </body>
 </html>
