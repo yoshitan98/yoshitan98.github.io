@@ -6,6 +6,8 @@
 <title>テキスト中心の本のスキャンからjbig2で小さいPDFを作成する</title>
 </head>
 
+
+
 <body bgcolor="#FFFFFF">
 
 <p><font size="4"><strong>テキスト中心の本のスキャンからjbig2で小さいPDFを作成する</strong></font>　<font size="2">2026年7月28日更新</font></p>
@@ -26,10 +28,8 @@ img2pdf.py の替わりに CPDF でもできるが作成されるPDFが常に72d
 
 <p>スクリーンショットの自動化方法については書かないので必要であれば何らかの方法でご自分でご用意下さい。</p>
 
-<p>(1) スキャンでPDFが作成されるのであればその中からまず個々の画像ファイルを抽出する。<a href="https://github.com/oschwartz10612/poppler-windows"
-target="_blank">Poppler</a> の pdfimages.exe コマンドを使ったり、私のスキャナーのPDFは
-<a href="https://www.vector.co.jp/soft/win95/writing/se377893.html"
-target="_blank">画像梱包</a> でも抽出できた。</p>
+<p>(1) スキャンでPDFが作成されるのであればその中からまず個々の画像ファイルを抽出する。<a href="https://github.com/oschwartz10612/poppler-windows" target="_blank">Poppler</a> の pdfimages.exe コマンドを使ったり、私のスキャナーのPDFは
+<a href="https://www.vector.co.jp/soft/win95/writing/se377893.html" target="_blank">画像梱包</a> でも抽出できた。</p>
 
 <p>(2) 希望により何らかのツールで画像のサイズ（ピクセル数）を小さくする。変換後の画像形式は
 png がよい。サイズを小さくすれば作成されるPDFは小さくなるが、透明テキストを付けるのであれば、サイズを小さくし過ぎるとOCRの認識精度は下がってしまう。</p>
